@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import "./App.css"
+import { HashRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
+import { Breadcrumb, Alert } from "antd"
+import Home from "./views/home/"
+import Apps from "./views/app"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const breadcrumbNameMap = {
+    "/apps": "app",
+    "/home": "home",
+    "/apps/1": "Application1",
+    "/apps/2": "Application2",
+    "/apps/1/detail": "Detail",
+    "/apps/2/detail": "Detail"
 }
 
-export default App;
+const Homes = withRouter(props => {
+    const { location } = props
+    const pathSnippets = location.pathname.split("/").filter(i => i)
+    const extraBreadcrumbItems = pathSnippets.map((_, index) => {
+        const url = `/${pathSnippets.slice(0, index + 1).join("/")}`
+        return (
+            <Breadcrumb.Item key={url}>
+                <Link to={url}>{breadcrumbNameMap[url]}</Link>
+            </Breadcrumb.Item>
+        )
+    })
+    const breadcrumbItems = [
+        <Breadcrumb.Item key='home'>
+            <Link to='/'>Home</Link>
+        </Breadcrumb.Item>
+    ].concat(extraBreadcrumbItems)
+
+    return (
+        <div className='App'>
+            <div className='demo-nav'>
+                <Link to='/'>Ytu </Link>|<Link to='/apps'> 快乐风男</Link>|<Link to='/home'> 主页</Link>
+            </div>
+            <Alert style={{ margin: "16px 0" }} message=':---------------->' />
+            <Breadcrumb>{breadcrumbItems}</Breadcrumb>
+
+            <Switch>
+                <Route path='/apps' component={Apps} />
+                <Route path='/home' component={Home} />
+                <Route render={() => <span>欢迎你</span>} />
+            </Switch>
+        </div>
+    )
+})
+
+function App() {
+    return (
+        <Router>
+            <Homes />
+        </Router>
+    )
+}
+
+export default App
