@@ -34,15 +34,14 @@ const Homes = withRouter(props => {
     return (
         <div className='App'>
             <div className='demo-nav'>
-                <Link to='/'>Ytu </Link>|<Link to='/apps'> 快乐风男</Link>|<Link to='/home'> 主页</Link>
+                <Link to='/'>Ytu </Link>|<Link to='/home'> 主页</Link>
             </div>
             <Alert style={{ margin: "16px 0" }} message=':---------------->' />
             <Breadcrumb>{breadcrumbItems}</Breadcrumb>
 
             <Switch>
-                <Route path='/apps' component={Apps} />
                 <Route path='/home' component={Home} />
-                <Route render={() => <span>欢迎你</span>} />
+                <Route path='' component={Apps} />
             </Switch>
         </div>
     )
