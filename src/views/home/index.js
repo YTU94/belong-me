@@ -2,10 +2,16 @@ import React from "react"
 import { Modal, Button, Card, Icon, Avatar } from "antd"
 import ShellForm from "../../components/shellForm"
 import PageFooter from "../../components/pageFooter"
+import Api from "../../utils/api"
 
 const { Meta } = Card
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props)
+        this.shellForm = React.createRef()
+    }
+
     state = { visible: false }
 
     showModal = () => {
@@ -15,9 +21,15 @@ class Home extends React.Component {
     }
 
     handleOk = e => {
-        console.log(e)
+        console.log(this.shellForm.current.state)
         this.setState({
             visible: false
+        })
+        Api.submitShell({
+            shell: this.shellForm.current.state.shell,
+            password: this.shellForm.current.state.password
+        }).then(res => {
+            console.log(res)
         })
     }
 
@@ -60,7 +72,7 @@ class Home extends React.Component {
                         okText='submit'
                     >
                         <p>Please enter the shell command and execute password</p>
-                        <ShellForm />
+                        <ShellForm ref={this.shellForm} />
                     </Modal>
                 </div>
 
