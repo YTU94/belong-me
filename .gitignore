@@ -9,7 +9,8 @@
 /coverage
 
 # production
-/build
+# 添加打包后文件
+# /build
 
 # misc
 .DS_Store
