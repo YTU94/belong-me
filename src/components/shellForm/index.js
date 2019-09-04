@@ -6,12 +6,12 @@ import { Icon, Input } from "antd"
 class ShellForm extends React.Component {
     constructor(props) {
         super(props)
+
         this.state = {
             shell: "",
             password: ""
         }
     }
-
     handleSubmit = e => {
         e.preventDefault()
         this.props.form.validateFields((err, values) => {
@@ -22,6 +22,7 @@ class ShellForm extends React.Component {
     }
 
     shellChange = e => {
+        console.log(this.props)
         this.setState({
             shell: e.currentTarget.value
         })
