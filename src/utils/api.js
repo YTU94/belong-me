@@ -1,14 +1,14 @@
 import axios from "axios"
 
-axios.defaults.baseURL = "http://ggapi.ytuj.cn"
-
+// axios.defaults.baseURL = "http://ggapi.ytuj.cn"
+const defaultBaseURL = "http://ggapi.ytuj.cn"
 const baseURL = "http://api.ytuj.cn"
 
 const instance = function(baseUrl, params) {
     return new Promise((resolve, reject) => {
         axios({
             method: params.method,
-            url: baseUrl +params.url,
+            url: baseUrl + params.url,
             data: params.data
         })
             .then(res => {
@@ -21,7 +21,7 @@ const instance = function(baseUrl, params) {
 }
 
 const submitShell = function(data) {
-    return instance({
+    return instance(defaultBaseURL, {
         method: "post",
         url: "/api/doshell",
         data: data
