@@ -21,7 +21,7 @@ const shellList = [
     {
         key: 2,
         name: "自我更新",
-        shell: "cd /opt/out/belong-me & git pull"
+        shell: "cd /opt/out/belong-me & rm -rf build & git pull"
     }
 ]
 class Home extends React.Component {
