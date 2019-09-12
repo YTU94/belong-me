@@ -1,5 +1,5 @@
 import React from "react"
-import { Modal, Button, Card, Icon, Avatar, Select } from "antd"
+import { Modal, Button, Card, Icon, Avatar, Select, Timeline } from "antd"
 import ShellForm from "../../components/shellForm"
 import PageFooter from "../../components/pageFooter"
 import Api from "../../utils/api"
@@ -105,7 +105,16 @@ class Home extends React.Component {
                         <ShellForm props={this.state.curShell} ref={this.shellForm} />
                     </Modal>
                 </div>
-
+                <Timeline>
+                    <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
+                    <Timeline.Item>Solve initial network problems 2015-09-01</Timeline.Item>
+                    <Timeline.Item dot={<Icon type='clock-circle-o' style={{ fontSize: "16px" }} />} color='red'>
+                        Technical testing 2015-09-01
+                    </Timeline.Item>
+                    <Timeline.Item>Network problems being solved 2015-09-01</Timeline.Item>
+                </Timeline>
+                <br />
+                <br />
                 <PageFooter />
             </div>
         )

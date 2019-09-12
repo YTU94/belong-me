@@ -1,6 +1,7 @@
 import React from "react"
 import { List, Avatar, Icon } from "antd"
 import PageFooter from "../../components/pageFooter"
+import Api from "../../utils/api"
 
 import "./app.less"
 const listData = []
@@ -14,7 +15,12 @@ for (let i = 0; i < 23; i++) {
             "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
     })
 }
-
+Api.getArticleList({
+    page:1,
+    page_size: 10
+}).then(res => {
+    console.log(res)
+})
 const IconText = ({ type, text }) => (
     <span>
         <Icon type={type} style={{ marginRight: 8 }} />
