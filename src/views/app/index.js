@@ -1,23 +1,20 @@
-import React from "react"
+import React, { useState } from "react"
 import { List, Avatar, Icon } from "antd"
 import PageFooter from "../../components/pageFooter"
 import Api from "../../utils/api"
 
 import "./app.less"
-const listData = []
-for (let i = 0; i < 23; i++) {
-    listData.push({
-        href: "http://ant.design",
-        title: `ant design part ${i}`,
-        avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-        description: "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-        content:
-            "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-    })
-}
-Api.getAppleidList({}).then(res => {
-    console.log(res)
-})
+// for (let i = 0; i < 23; i++) {
+//     listData.push({
+//         href: "http://ant.design",
+//         title: `ant design part ${i}`,
+//         avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+//         description: "Ant Design, a design language for background applications, is refined by Ant UED Team.",
+//         content:
+//             "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
+//     })
+// }
+
 const IconText = ({ type, text }) => (
     <span>
         <Icon type={type} style={{ marginRight: 8 }} />
@@ -26,9 +23,22 @@ const IconText = ({ type, text }) => (
 )
 
 function Home() {
+    // let listData = []
+    const [listData, setListdata] = useState([])
+    const [count, setCount] = useState(0)
+
+    Api.getAppleidList({}).then(res => {
+        setListdata(res.data)
+        // listData = res.data
+        // console.log(listData)
+        // console.log(this)
+    })
     return (
         <div className='app'>
             <header className='App-header' />
+            <p>You clicked {count} times</p>
+            <button onClick={() => setCount(count + 1)}>Click me</button>
+
             <List
                 itemLayout='vertical'
                 size='large'
@@ -56,8 +66,8 @@ function Home() {
                     >
                         <List.Item.Meta
                             avatar={<Avatar src={item.avatar} />}
-                            title={<a href={item.href}>{item.title}</a>}
-                            description={item.description}
+                            title={<a href={item.href}>{item.name}</a>}
+                            description={item.remark}
                         />
                         {item.content}
                     </List.Item>
