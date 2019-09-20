@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { List, Avatar, Icon, InputNumber } from "antd"
+import { List, Avatar } from "antd"
 import PageFooter from "../../components/pageFooter"
 import Api from "../../utils/api"
 
@@ -7,21 +7,15 @@ import "./app.less"
 
 function Home() {
     const [listData, setListdata] = useState([])
-    const [count, setCount] = useState(0)
     const copyPwd = e => {
         const id = `pwdId${e.id}` || 0
         var Url2 = document.getElementById(id)
-        console.log(Url2)
         Url2.select()
         document.execCommand("copy", true)
     }
 
     useEffect(() => {
-        console.log(1)
-        // getData()
-        document.title = `You clicked ${count} times`
         Api.getAppleidList({}).then(res => {
-            console.log(1)
             setListdata(res.data)
         })
     }, [])
@@ -37,7 +31,7 @@ function Home() {
                     onChange: page => {
                         console.log(page)
                     },
-                    pageSize: 3
+                    pageSize: 4
                 }}
                 dataSource={listData}
                 footer={

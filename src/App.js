@@ -1,5 +1,5 @@
 import React from "react"
-import "./App.css"
+import "./App.less"
 import { HashRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
 import { Breadcrumb, Alert } from "antd"
 import Home from "./views/home/"
@@ -33,7 +33,7 @@ const Homes = withRouter(props => {
     ].concat(extraBreadcrumbItems)
 
     return (
-        <div className='App'>
+        <div className='root-app'>
             <div className='demo-nav'>
                 <Link to='/'>Ytu </Link>|<Link to='/home'> 主页</Link>|<Link to='/story'> 故事</Link>
             </div>

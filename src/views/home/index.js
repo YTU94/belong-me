@@ -11,17 +11,17 @@ const shellList = [
     {
         key: 0,
         name: "更新taro-back",
-        shell: "cd /www/back/node & git pull & pm2 restart "
+        shell: "cd /www/node/taro-GGameing-server & git pull origin master & pm2 restart "
     },
     {
         key: 1,
         name: "更新meedu-back",
-        shell: "cd /www/node/back-end && git pull && pm2 start bin/www"
+        shell: "cd /www/node/back-end && git pull origin master && pm2 start bin/www"
     },
     {
         key: 2,
         name: "自我更新",
-        shell: "cd /opt/out/belong-me & rm -rf build & git pull origin master"
+        shell: "cd /opt/out/belong-me&rm -rf build&git pull origin master"
     }
 ]
 class Home extends React.Component {
