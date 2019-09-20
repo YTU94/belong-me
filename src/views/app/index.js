@@ -1,43 +1,34 @@
-import React, { useState } from "react"
-import { List, Avatar, Icon } from "antd"
+import React, { useState, useEffect } from "react"
+import { List, Avatar, Icon, InputNumber } from "antd"
 import PageFooter from "../../components/pageFooter"
 import Api from "../../utils/api"
 
 import "./app.less"
-// for (let i = 0; i < 23; i++) {
-//     listData.push({
-//         href: "http://ant.design",
-//         title: `ant design part ${i}`,
-//         avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-//         description: "Ant Design, a design language for background applications, is refined by Ant UED Team.",
-//         content:
-//             "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently."
-//     })
-// }
-
-const IconText = ({ type, text }) => (
-    <span>
-        <Icon type={type} style={{ marginRight: 8 }} />
-        {text}
-    </span>
-)
 
 function Home() {
-    // let listData = []
     const [listData, setListdata] = useState([])
     const [count, setCount] = useState(0)
+    const copyPwd = e => {
+        const id = `pwdId${e.id}` || 0
+        var Url2 = document.getElementById(id)
+        console.log(Url2)
+        Url2.select()
+        document.execCommand("copy", true)
+    }
 
-    Api.getAppleidList({}).then(res => {
-        setListdata(res.data)
-        // listData = res.data
-        // console.log(listData)
-        // console.log(this)
-    })
+    useEffect(() => {
+        console.log(1)
+        // getData()
+        document.title = `You clicked ${count} times`
+        Api.getAppleidList({}).then(res => {
+            console.log(1)
+            setListdata(res.data)
+        })
+    }, [])
+
     return (
         <div className='app'>
             <header className='App-header' />
-            <p>You clicked {count} times</p>
-            <button onClick={() => setCount(count + 1)}>Click me</button>
 
             <List
                 itemLayout='vertical'
@@ -57,19 +48,28 @@ function Home() {
                 renderItem={item => (
                     <List.Item
                         key={item.title}
-                        actions={[
-                            <IconText type='star-o' text='156' key='list-vertical-star-o' />,
-                            <IconText type='like-o' text='156' key='list-vertical-like-o' />,
-                            <IconText type='message' text='2' key='list-vertical-message' />
-                        ]}
-                        extra={<img width={272} alt='logo' src='https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png' />}
+                        // actions={[
+                        //     <IconText type='star-o' text='156' key='list-vertical-star-o' />,
+                        //     <IconText type='like-o' text='156' key='list-vertical-like-o' />,
+                        //     <IconText type='message' text='2' key='list-vertical-message' />
+                        // ]}
+                        // extra={<img width={272} alt='logo' src='https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png' />}
                     >
                         <List.Item.Meta
-                            avatar={<Avatar src={item.avatar} />}
-                            title={<a href={item.href}>{item.name}</a>}
+                            avatar={<Avatar src={item.avatar || item.id} />}
+                            title={
+                                <a href={item.href}>
+                                    {item.name} : {item.account}
+                                </a>
+                            }
                             description={item.remark}
                         />
-                        {item.content}
+                        <div>
+                            密码 ： &nbsp;
+                            <a href='#' onClick={copyPwd.bind(this, item)}>
+                                {item.password}
+                            </a>
+                        </div>
                     </List.Item>
                 )}
             />
