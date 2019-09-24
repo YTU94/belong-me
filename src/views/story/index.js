@@ -1,6 +1,7 @@
 import React from "react"
-import {  Icon, Timeline } from "antd"
+import { Icon, Timeline, Upload } from "antd"
 import PageFooter from "../../components/pageFooter"
+import UploadFile from "../../components/uploadFile"
 
 class Home extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class Home extends React.Component {
         this.shellForm = React.createRef()
     }
 
-    state = { visible: false, curShell: "" }
+    state = { visible: false, curShell: "", curUrl: "" }
 
     render() {
         return (
@@ -23,6 +24,8 @@ class Home extends React.Component {
                 </Timeline>
                 <br />
                 <br />
+
+                <UploadFile></UploadFile>
                 <PageFooter />
             </div>
         )
