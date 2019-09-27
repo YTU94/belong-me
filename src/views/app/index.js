@@ -31,26 +31,18 @@ function Home() {
                     onChange: page => {
                         console.log(page)
                     },
-                    pageSize: 4
+                    pageSize: 5
                 }}
                 dataSource={listData}
                 footer={
                     <div>
-                        <b>ant design</b> footer part
+                        <b>请谨慎使用</b>，出任何问题与本站无关
                     </div>
                 }
                 renderItem={item => (
-                    <List.Item
-                        key={item.title}
-                        // actions={[
-                        //     <IconText type='star-o' text='156' key='list-vertical-star-o' />,
-                        //     <IconText type='like-o' text='156' key='list-vertical-like-o' />,
-                        //     <IconText type='message' text='2' key='list-vertical-message' />
-                        // ]}
-                        // extra={<img width={272} alt='logo' src='https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png' />}
-                    >
+                    <List.Item key={item.title}>
                         <List.Item.Meta
-                            avatar={<Avatar src={item.avatar || item.id} />}
+                            avatar={<Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>{item.id}</Avatar>}
                             title={
                                 <a href={item.href}>
                                     {item.name} : {item.account}

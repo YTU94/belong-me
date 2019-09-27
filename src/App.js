@@ -5,10 +5,13 @@ import { Breadcrumb, Alert } from "antd"
 import Home from "./views/home/"
 import Apps from "./views/app"
 import story from "./views/story"
+import uploadImg from "./views/uploadImg"
+
 const breadcrumbNameMap = {
     "/apps": "app",
     "/home": "home",
     "/story": "story",
+    "/uploadImg": "uploadImg",
     "/apps/1": "Application1",
     "/apps/2": "Application2",
     "/apps/1/detail": "Detail",
@@ -35,12 +38,13 @@ const Homes = withRouter(props => {
     return (
         <div className='root-app'>
             <div className='demo-nav'>
-                <Link to='/'>Ytu </Link>|<Link to='/home'> 主页</Link>|<Link to='/story'> 故事</Link>
+                <Link to='/'>Ytu </Link>|<Link to='/home'> 主页</Link>|<Link to='/story'> 故事</Link>|<Link to='/uploadImg'> 图床</Link>
             </div>
             <Alert style={{ margin: "16px 0" }} message=':---------------->' />
             <Breadcrumb>{breadcrumbItems}</Breadcrumb>
 
             <Switch>
+                <Route path='/uploadImg' component={uploadImg} />
                 <Route path='/story' component={story} />
                 <Route path='/home' component={Home} />
                 <Route path='' component={Apps} />
