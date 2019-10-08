@@ -5,19 +5,30 @@ import PageFooter from "../../components/pageFooter"
 let id = 0
 
 function Home(params) {
+    const [message, setmessage] = useState("")
+    const [email, setemail] = useState("")
+    const msgChange = e => {
+        setmessage(e.target.value)
+    }
+    const emailChange = e => {
+        setemail(e.target.value)
+    }
+
     const handleSubmit = e => {
         e.preventDefault()
     }
-
+    const submitMsg = e => {}
     return (
         <div>
             <Form labelCol={{ span: 5 }} wrapperCol={{ span: 12 }} onSubmit={handleSubmit}>
-                <Form.Item label='Note'>
-                    <Input placeholder="I'm the content is being validated" id='validating' />
+                <Form.Item label='message'>
+                    <Input placeholder='Please input what you want to say' onChange={msgChange} value={message} id='validating0' />
                 </Form.Item>
-
+                <Form.Item label='email'>
+                    <Input placeholder='Please input your email' onChange={emailChange} value={email} id='validating1' />
+                </Form.Item>
                 <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
-                    <Button type='primary' htmlType='submit'>
+                    <Button type='primary' htmlType='submit' onClick={submitMsg}>
                         Submit
                     </Button>
                 </Form.Item>
