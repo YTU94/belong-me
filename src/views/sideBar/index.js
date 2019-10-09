@@ -1,8 +1,11 @@
 import React from "react"
 import "./index.less"
-import { Avatar, Icon, Button } from "antd"
+import { Avatar, Icon, Button, message } from "antd"
 
 function Index(params) {
+    const checkIn = e => {
+        message.success("签到成功")
+    }
     return (
         <div className='side-bar'>
             <div className='top-card'>
@@ -26,12 +29,13 @@ function Index(params) {
                     <a href=''>453980450@qq.com</a>
                 </div>
                 <div className='text-introduction'>LIVE：且随疾风前行</div>
-
             </div>
 
             <br />
             <div className='list-card'>
-                <Button block>签到</Button>
+                <Button block onClick={checkIn}>
+                    签到
+                </Button>
             </div>
         </div>
     )

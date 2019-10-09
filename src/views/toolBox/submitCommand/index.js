@@ -3,6 +3,7 @@ import { Modal, Button, Card, Icon, Avatar, Select } from "antd"
 import ShellForm from "../../../components/shellForm"
 import PageFooter from "../../../components/pageFooter"
 import Api from "../../../utils/api"
+import './index.less'
 
 const { Meta } = Card
 const { Option } = Select
@@ -64,15 +65,10 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='submit-command'>
                 <Card
                     style={{ width: 300 }}
                     cover={<img alt='example' src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png' />}
-                    actions={[
-                        <Icon type='setting' key='setting' />,
-                        <Icon type='edit' key='edit' />,
-                        <Icon type='ellipsis' key='ellipsis' />
-                    ]}
                 >
                     <Meta
                         avatar={<Avatar src='https://avatars1.githubusercontent.com/u/19224071?s=460&v=4' />}
