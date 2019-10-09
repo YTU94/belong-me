@@ -13,7 +13,7 @@ function Index(params) {
                     <Card>
                         <Link to='/toolBox/dataReverse'>
                             <Meta
-                                avatar={<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />}
+                                avatar={<Avatar style={{ backgroundColor: "#87d068" }}>ZH</Avatar>}
                                 title='进制转换'
                                 description='不同进制之间的转换'
                             />
@@ -24,7 +24,7 @@ function Index(params) {
                     <Card>
                         <Link to='/toolBox/uploadImg'>
                             <Meta
-                                avatar={<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />}
+                                avatar={<Avatar style={{ backgroundColor: "#87d068" }}>TC</Avatar>}
                                 title='Mini图床'
                                 description='个人图片云存储'
                             />

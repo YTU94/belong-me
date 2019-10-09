@@ -146,7 +146,7 @@ function Index(params) {
                         转换
                     </Button>
                     &nbsp;&nbsp;
-                    <Button type='warn' onClick={clear}>
+                    <Button type='danger' onClick={clear}>
                         清空
                     </Button>
                 </div>
