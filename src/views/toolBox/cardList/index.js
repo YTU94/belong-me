@@ -1,24 +1,12 @@
-import React, { useState, useEffect } from "react"
-import { Icon, Card, Col, Row, Timeline, Form, Input, Button, Avatar } from "antd"
-import { HashRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
+import React from "react"
+import { Card, Col, Row, Avatar } from "antd"
+import { HashRouter as Link } from "react-router-dom"
 
 let id = 0
 const { Meta } = Card
 
 function Index(params) {
-    const [message, setmessage] = useState("")
-    const [email, setemail] = useState("")
-    const msgChange = e => {
-        setmessage(e.target.value)
-    }
-    const emailChange = e => {
-        setemail(e.target.value)
-    }
 
-    const handleSubmit = e => {
-        e.preventDefault()
-    }
-    const submitMsg = e => {}
     return (
         <div className='activitys-list'>
             <Row gutter='16'>
