@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { Icon, Timeline, Form, Input, Button, Card, Avatar, Select, Table, Divider, Tag, message } from "antd"
+import {  Input, Button, Card, Select, Table, message } from "antd"
 
-let id = 0
-const { Meta } = Card
 const { Option } = Select
 function Index(params) {
     const [decimal, setdecimal] = useState("2")
