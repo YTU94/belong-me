@@ -6,6 +6,7 @@ import Home from "./views/home/"
 import Apps from "./views/app"
 import story from "./views/story"
 import toolBox from "./views/toolBox"
+import SideBar from './views/sideBar'
 
 const breadcrumbNameMap = {
     "/apps": "app",
@@ -58,7 +59,7 @@ const Homes = withRouter(props => {
                     </Switch>
                 </Col>
                 <Col span='5'>
-                    <h1>ytu</h1>
+                    <SideBar/>
                 </Col>
             </Row>
         </div>

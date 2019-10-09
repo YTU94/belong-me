@@ -3,7 +3,7 @@ import { List, Avatar } from "antd"
 import PageFooter from "../../components/pageFooter"
 import Api from "../../utils/api"
 
-import "./app.less"
+import "./index.less"
 
 function Home() {
     const [listData, setListdata] = useState([])
