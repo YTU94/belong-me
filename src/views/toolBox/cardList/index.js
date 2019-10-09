@@ -8,19 +8,20 @@ const { Meta } = Card
 function Index(params) {
     return (
         <div className='activitys-list'>
-            <Row gutter='16'>
-                <Col span='8'>
+            <Row gutter={16}>
+                <Col span={8}>
                     <Card>
                         <Link to='/toolBox/dataReverse'>
                             <Meta
                                 avatar={<Avatar style={{ backgroundColor: "#87d068" }}>ZH</Avatar>}
-                                title='进制转换'size="small"
+                                title='进制转换'
+                                size='small'
                                 description='不同进制之间的转换'
                             />
                         </Link>
                     </Card>
                 </Col>
-                <Col span='8'>
+                <Col span={8}>
                     <Card>
                         <Link to='/toolBox/uploadImg'>
                             <Meta

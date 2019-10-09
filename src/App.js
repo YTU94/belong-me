@@ -42,8 +42,8 @@ const Homes = withRouter(props => {
 
     return (
         <div className='root-app'>
-            <Row gutter='40'>
-                <Col span='19' className='white-bg box-shadow'>
+            <Row gutter={40}>
+                <Col span={19} className='white-bg box-shadow'>
                     <div className='demo-nav'>
                         <Link to='/'>Ytu </Link>|<Link to='/home'> 主页</Link>|<Link to='/story'> 故事</Link>|
                         <Link to='/toolBox'> 工具箱</Link>
@@ -58,7 +58,7 @@ const Homes = withRouter(props => {
                         <Route path='' component={Apps} />
                     </Switch>
                 </Col>
-                <Col span='5'>
+                <Col span={5}>
                     <SideBar />
                 </Col>
             </Row>
