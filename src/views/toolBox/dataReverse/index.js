@@ -134,18 +134,18 @@ function Index(params) {
                 <h3>进制转换</h3>
                 <div className=''>
                     <Input placeholder='Basic usage' value={value} onChange={onChange} style={{ width: 200 }} />
-                    &nbsp;进制：
+                    &nbsp;&nbsp;进制：
                     <Select defaultValue={decimal} style={{ width: 120 }} onChange={handleChangeDecimal}>
                         <Option value='2'>2</Option>
                         <Option value='8'>8</Option>
                         <Option value='10'>10</Option>
                         <Option value='16'>16</Option>
                     </Select>
-                    &nbsp;
+                    &nbsp;&nbsp;
                     <Button type='primary' onClick={handleSubmit}>
                         转换
                     </Button>
-                    &nbsp;
+                    &nbsp;&nbsp;
                     <Button type='warn' onClick={clear}>
                         清空
                     </Button>

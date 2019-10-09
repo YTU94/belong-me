@@ -1,7 +1,7 @@
 import React from "react"
 import "./App.less"
 import { HashRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
-import { Breadcrumb, Alert } from "antd"
+import { Breadcrumb, Alert, Col, Row } from "antd"
 import Home from "./views/home/"
 import Apps from "./views/app"
 import story from "./views/story"
@@ -41,18 +41,26 @@ const Homes = withRouter(props => {
 
     return (
         <div className='root-app'>
-            <div className='demo-nav'>
-                <Link to='/'>Ytu </Link>|<Link to='/home'> 主页</Link>|<Link to='/story'> 故事</Link>|<Link to='/toolBox'> 工具箱</Link>
-            </div>
-            <Alert style={{ margin: "16px 0" }} message=':---------------->' />
-            <Breadcrumb>{breadcrumbItems}</Breadcrumb>
+            <Row gutter='16'>
+                <Col span='19'>
+                    <div className='demo-nav'>
+                        <Link to='/'>Ytu </Link>|<Link to='/home'> 主页</Link>|<Link to='/story'> 故事</Link>|
+                        <Link to='/toolBox'> 工具箱</Link>
+                    </div>
+                    <Alert style={{ margin: "16px 0" }} message=':---------------->' />
+                    <Breadcrumb>{breadcrumbItems}</Breadcrumb>
 
-            <Switch>
-                <Route path='/toolBox' component={toolBox} />
-                <Route path='/story' component={story} />
-                <Route path='/home' component={Home} />
-                <Route path='' component={Apps} />
-            </Switch>
+                    <Switch>
+                        <Route path='/toolBox' component={toolBox} />
+                        <Route path='/story' component={story} />
+                        <Route path='/home' component={Home} />
+                        <Route path='' component={Apps} />
+                    </Switch>
+                </Col>
+                <Col span='5'>
+                    <h1>ytu</h1>
+                </Col>
+            </Row>
         </div>
     )
 })
