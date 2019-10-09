@@ -6,7 +6,7 @@ import Home from "./views/home/"
 import Apps from "./views/app"
 import story from "./views/story"
 import toolBox from "./views/toolBox"
-import SideBar from './views/sideBar'
+import SideBar from "./views/sideBar"
 
 const breadcrumbNameMap = {
     "/apps": "app",
@@ -42,8 +42,8 @@ const Homes = withRouter(props => {
 
     return (
         <div className='root-app'>
-            <Row gutter='16'>
-                <Col span='19'>
+            <Row gutter='40'>
+                <Col span='19' className='white-bg box-shadow'>
                     <div className='demo-nav'>
                         <Link to='/'>Ytu </Link>|<Link to='/home'> 主页</Link>|<Link to='/story'> 故事</Link>|
                         <Link to='/toolBox'> 工具箱</Link>
@@ -59,7 +59,7 @@ const Homes = withRouter(props => {
                     </Switch>
                 </Col>
                 <Col span='5'>
-                    <SideBar/>
+                    <SideBar />
                 </Col>
             </Row>
         </div>

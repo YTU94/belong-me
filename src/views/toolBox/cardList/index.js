@@ -14,7 +14,7 @@ function Index(params) {
                         <Link to='/toolBox/dataReverse'>
                             <Meta
                                 avatar={<Avatar style={{ backgroundColor: "#87d068" }}>ZH</Avatar>}
-                                title='进制转换'
+                                title='进制转换'size="small"
                                 description='不同进制之间的转换'
                             />
                         </Link>
