@@ -6,6 +6,7 @@ import PageFooter from "../../components/pageFooter"
 import DataReverse from "./dataReverse"
 import CardList from "./cardList"
 import UploadImg from "./uploadImg"
+import SubmitCommand from './submitCommand'
 
 let id = 0
 const { Meta } = Card
@@ -27,6 +28,7 @@ function Home(params) {
     return (
         <div>
             <Switch>
+                <Route path='/toolBox/submitCommand' component={SubmitCommand} />
                 <Route path='/toolBox/dataReverse' component={DataReverse} />
                 <Route path='/toolBox/uploadImg' component={UploadImg} />
                 <Route path='/toolBox' component={CardList} />

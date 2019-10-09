@@ -6,32 +6,46 @@ let id = 0
 const { Meta } = Card
 
 function Index(params) {
+    const cardList = [
+        {
+            path: "/toolBox/dataReverse",
+            avatarText: "ZH",
+            title: "进制转换",
+            description: "进制转换",
+            backgroundColor: "#87d068"
+        },
+        {
+            path: "/toolBox/uploadImg",
+            avatarText: "TC",
+            title: "Mini图床",
+            description: "个人图片云存储",
+            backgroundColor: "#87d068"
+        },
+        {
+            path: "/toolBox/submitCommand",
+            avatarText: "SC",
+            title: "提交终端命令",
+            description: "提交终端命令",
+            backgroundColor: "#87d068"
+        }
+    ]
     return (
         <div className='activitys-list'>
             <Row gutter={16}>
-                <Col span={8}>
-                    <Card>
-                        <Link to='/toolBox/dataReverse'>
-                            <Meta
-                                avatar={<Avatar style={{ backgroundColor: "#87d068" }}>ZH</Avatar>}
-                                title='进制转换'
-                                size='small'
-                                description='不同进制之间的转换'
-                            />
-                        </Link>
-                    </Card>
-                </Col>
-                <Col span={8}>
-                    <Card>
-                        <Link to='/toolBox/uploadImg'>
-                            <Meta
-                                avatar={<Avatar style={{ backgroundColor: "#87d068" }}>TC</Avatar>}
-                                title='Mini图床'
-                                description='个人图片云存储'
-                            />
-                        </Link>
-                    </Card>
-                </Col>
+                {cardList.map(e => (
+                    <Col span={8}>
+                        <Card>
+                            <Link to={e.path}>
+                                <Meta
+                                    avatar={<Avatar style={{ backgroundColor: e.backgroundColor }}>{e.avatarText}</Avatar>}
+                                    title={e.title}
+                                    size='small'
+                                    description={e.description}
+                                />
+                            </Link>
+                        </Card>
+                    </Col>
+                ))}
             </Row>
         </div>
     )
