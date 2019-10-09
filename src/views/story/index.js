@@ -34,17 +34,23 @@ function Home(params) {
                 </Form.Item>
             </Form>
 
+            <h3> 🎓毕业后做的些事</h3>
+            <br />
             <Timeline>
-                <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
-                <Timeline.Item>Solve initial network problems 2015-09-01</Timeline.Item>
+                <Timeline.Item dot={<Icon type='clock-circle-o' style={{ fontSize: "16px" }} />}>博客走走停停的坚持着，只为了有个足迹👣，去走的更好【ytuj.cn】</Timeline.Item>
+                <Timeline.Item dot={<Icon type='clock-circle-o' style={{ fontSize: "16px" }} />}>也搞了自己的微信公众号，然而有时候可能自己都忘了，【疯狂的前端】</Timeline.Item>
                 <Timeline.Item dot={<Icon type='clock-circle-o' style={{ fontSize: "16px" }} />} color='red'>
-                    Technical testing 2015-09-01
+                    小程序的风刮来时，做了2个小程序，凑凑热闹【meedu】【酒桌gaming】
                 </Timeline.Item>
-                <Timeline.Item>Network problems being solved 2015-09-01</Timeline.Item>
-            </Timeline>
-            <br />
-            <br />
+                <Timeline.Item dot={<Icon type='clock-circle-o' style={{ fontSize: "16px" }} />}>最有💰收益的就是在慕课网做了讲师，录了课程</Timeline.Item>
+                <Timeline.Item dot={<Icon type='clock-circle-o' style={{ fontSize: "16px" }} />}>
+                    <div className="a">路漫漫其修远兮，吾将剩下而求索</div>
+                </Timeline.Item>
 
+            </Timeline>
+            <div className="activitys-list">
+                <h3>life</h3>
+            </div>
             <PageFooter />
         </div>
     )

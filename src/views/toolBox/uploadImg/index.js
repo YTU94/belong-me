@@ -1,7 +1,6 @@
 import React from "react"
 import { Icon, Upload } from "antd"
-import PageFooter from "../../components/pageFooter"
-import UploadFile from "../../components/uploadFile"
+import UploadFile from "../../../components/uploadFile"
 
 class Home extends React.Component {
     constructor(props) {
@@ -18,7 +17,6 @@ class Home extends React.Component {
                 <br />
 
                 <UploadFile></UploadFile>
-                <PageFooter />
             </div>
         )
     }
