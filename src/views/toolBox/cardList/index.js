@@ -1,8 +1,8 @@
 import React from "react"
 import { Card, Col, Row, Avatar } from "antd"
 import { HashRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
+import './index.less'
 
-let id = 0
 const { Meta } = Card
 
 function Index(params) {
@@ -30,7 +30,7 @@ function Index(params) {
         }
     ]
     return (
-        <div className='activitys-list'>
+        <div className='card-list'>
             <Row gutter={16}>
                 {cardList.map(e => (
                     <Col span={8}>
