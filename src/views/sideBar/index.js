@@ -1,6 +1,6 @@
 import React from "react"
 import "./index.less"
-import { Avatar, Icon } from "antd"
+import { Avatar, Icon, Button } from "antd"
 
 function Index(params) {
     return (
@@ -30,8 +30,9 @@ function Index(params) {
             </div>
 
             <br />
-            <br />
-            <div className='list-card'></div>
+            <div className='list-card'>
+                <Button block>签到</Button>
+            </div>
         </div>
     )
 }
