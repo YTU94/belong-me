@@ -8,10 +8,10 @@ import "./index.less"
 function Home() {
     const [listData, setListdata] = useState([])
     const copyPwd = e => {
-        const id = `pwdId${e.id}` || 0
-        var Url2 = document.getElementById(id)
-        Url2.select()
-        document.execCommand("copy", true)
+        // const id = `pwdId${e.id}` || 0
+        // var Url2 = document.getElementById(id)
+        // Url2.select()
+        // document.execCommand("copy", true)
     }
 
     useEffect(() => {
