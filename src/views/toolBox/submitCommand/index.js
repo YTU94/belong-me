@@ -1,5 +1,5 @@
-import React from "react"
-import { Modal, Button, Card, Avatar, Select } from "antd"
+import React, { useState } from "react"
+import { Modal, Button, Card, Avatar, Select, message } from "antd"
 import ShellForm from "../../../components/shellForm"
 import Api from "../../../utils/api"
 import "./index.less"
@@ -24,89 +24,73 @@ const shellList = [
         shell: "cd /opt/out/belong-me&rm -rf build&git pull origin master"
     }
 ]
-class Home extends React.Component {
-    constructor(props) {
-        super(props)
-        this.shellForm = React.createRef()
+
+function Index(params) {
+    const [visible, setvisible] = useState(false)
+    const [curShell, setcurShell] = useState("")
+    const shellForm = React.createRef()
+    const showModal = () => {
+        setvisible(true)
     }
 
-    state = { visible: false, curShell: "" }
+    const handleOk = e => {
+        setvisible(false)
 
-    showModal = () => {
-        this.setState({
-            visible: true
-        })
-    }
-
-    handleOk = e => {
-        this.setState({
-            visible: false
-        })
         Api.submitShell({
-            shell: this.shellForm.current.state.shell,
-            password: this.shellForm.current.state.password
+            shell: shellForm.current.state.shell,
+            password: shellForm.current.state.password
         }).then(res => {
-            console.log(res)
+            message.info(res.msg)
         })
     }
 
-    handleCancel = e => {
-        this.setState({
-            visible: false
-        })
-    }
-    selectChange = e => {
-        this.shellForm.current.state.shell = e
-        this.setState({
-            curShell: e
-        })
+    const handleCancel = e => {
+        setvisible(false)
     }
 
-    render() {
-        return (
-            <div className='submit-command'>
-                <Card
-                    style={{ width: 300 }}
-                    cover={<img alt='example' src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png' />}
-                >
-                    <Meta
-                        avatar={<Avatar src='https://avatars1.githubusercontent.com/u/19224071?s=460&v=4' />}
-                        title='Ytu'
-                        description='一枚伪前端工程师'
-                    />
-                </Card>
-                <br />
-                <br />
-                <div>
-                    <Button type='primary' onClick={this.showModal}>
-                        Submit Shell
-                    </Button>
-                    <Modal
-                        title='Submit Shell'
-                        visible={this.state.visible}
-                        onOk={this.handleOk}
-                        onCancel={this.handleCancel}
-                        okText='submit'
-                    >
-                        <p>Please enter the shell command and execute password</p>
-                        <b>Shell：</b>
-                        <Select defaultValue='' onChange={this.selectChange} style={{ width: 160 }}>
-                            {shellList.map(e => {
-                                return (
-                                    <Option value={e.shell} key={e.key}>
-                                        {e.name}
-                                    </Option>
-                                )
-                            })}
-                        </Select>
-                        <br />
-                        <br />
-                        <ShellForm props={this.state.curShell} ref={this.shellForm} />
-                    </Modal>
-                </div>
+    const selectChange = e => {
+        shellForm.current.state.shell = e
+        setcurShell(e)
+    }
+
+    return (
+        <div className='submit-command'>
+            <h3>远程执行终端命令</h3>
+            <Card
+                style={{ width: 300 }}
+                cover={<img alt='example' src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png' />}
+            >
+                <Meta
+                    avatar={<Avatar src='https://avatars1.githubusercontent.com/u/19224071?s=460&v=4' />}
+                    title='Ytu'
+                    description='一枚渣渣前端工程师'
+                />
+            </Card>
+            <br />
+            <br />
+            <div>
+                <Button type='primary' onClick={showModal}>
+                    Submit Shell
+                </Button>
+                <Modal title='Submit Shell' visible={visible} onOk={handleOk} onCancel={handleCancel} okText='submit'>
+                    <p>Please enter the shell command and execute password</p>
+                    <b>Shell：</b>
+                    <Select defaultValue='' onChange={selectChange} style={{ width: 160 }}>
+                        {shellList.map(e => {
+                            return (
+                                <Option value={e.shell} key={e.key}>
+                                    {e.name}
+                                </Option>
+                            )
+                        })}
+                    </Select>
+                    <br />
+                    <br />
+                    <ShellForm props={curShell} ref={shellForm} />
+                </Modal>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
-export default Home
+export default Index
