@@ -1,9 +1,8 @@
 import React from "react"
-import { Modal, Button, Card, Icon, Avatar, Select } from "antd"
+import { Modal, Button, Card, Avatar, Select } from "antd"
 import ShellForm from "../../../components/shellForm"
-import PageFooter from "../../../components/pageFooter"
 import Api from "../../../utils/api"
-import './index.less'
+import "./index.less"
 
 const { Meta } = Card
 const { Option } = Select
@@ -105,10 +104,6 @@ class Home extends React.Component {
                         <ShellForm props={this.state.curShell} ref={this.shellForm} />
                     </Modal>
                 </div>
-
-                <br />
-                <br />
-                <PageFooter />
             </div>
         )
     }
