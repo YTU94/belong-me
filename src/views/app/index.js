@@ -22,8 +22,8 @@ function Home() {
 
     return (
         <div className='app'>
-            <header className='App-header' />
-
+            <br />
+            <h3> AppleId</h3>
             <List
                 itemLayout='vertical'
                 size='large'

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import {  Input, Button, Card, Select, Table, message } from "antd"
+import React, { useState } from "react"
+import { Input, Button, Select, Table, message } from "antd"
 
 const { Option } = Select
 function Index(params) {
@@ -129,30 +129,28 @@ function Index(params) {
     ]
 
     return (
-        <div>
-            <div className='activitys-list'>
-                <h3>进制转换</h3>
-                <div className=''>
-                    <Input placeholder='Basic usage' value={value} onChange={onChange} style={{ width: 200 }} />
-                    &nbsp;&nbsp;进制：
-                    <Select defaultValue={decimal} style={{ width: 120 }} onChange={handleChangeDecimal}>
-                        <Option value='2'>2</Option>
-                        <Option value='8'>8</Option>
-                        <Option value='10'>10</Option>
-                        <Option value='16'>16</Option>
-                    </Select>
-                    &nbsp;&nbsp;
-                    <Button type='primary' onClick={handleSubmit}>
-                        转换
-                    </Button>
-                    &nbsp;&nbsp;
-                    <Button type='danger' onClick={clear}>
-                        清空
-                    </Button>
-                </div>
-                <br />
-                <Table columns={columns} dataSource={data} />
+        <div className='activitys-list'>
+            <br />
+            <div className=''>
+                <Input placeholder='Basic usage' value={value} onChange={onChange} style={{ width: 200 }} />
+                &nbsp;&nbsp;进制：
+                <Select defaultValue={decimal} style={{ width: 120 }} onChange={handleChangeDecimal}>
+                    <Option value='2'>2</Option>
+                    <Option value='8'>8</Option>
+                    <Option value='10'>10</Option>
+                    <Option value='16'>16</Option>
+                </Select>
+                &nbsp;&nbsp;
+                <Button type='primary' onClick={handleSubmit}>
+                    转换
+                </Button>
+                &nbsp;&nbsp;
+                <Button type='danger' onClick={clear}>
+                    清空
+                </Button>
             </div>
+            <br />
+            <Table columns={columns} dataSource={data} />
         </div>
     )
 }

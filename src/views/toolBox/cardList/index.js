@@ -1,6 +1,6 @@
 import React from "react"
 import { Card, Col, Row, Avatar } from "antd"
-import { HashRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
 import './index.less'
 
 const { Meta } = Card

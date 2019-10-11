@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.less"
-import { HashRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
 import { Breadcrumb, Alert, Col, Row } from "antd"
 import Apps from "./views/app"
 import story from "./views/story"
@@ -16,7 +16,6 @@ const breadcrumbNameMap = {
     "/toolBox/dataReverse": "dataReverse",
     "/toolBox/uploadImg": "uploadImg",
     "/toolBox/submitCommand": "submitCommand",
-
 
     "/apps/2": "Application2",
     "/apps/1/detail": "Detail",
@@ -45,9 +44,7 @@ const Homes = withRouter(props => {
             <Row gutter={40}>
                 <Col span={19} className='white-bg box-shadow'>
                     <div className='demo-nav'>
-                        <Link to='/'>Ytu </Link>|
-                        <Link to='/story'> 故事</Link>|
-                        <Link to='/toolBox'> 工具箱</Link>
+                        <Link to='/'>Ytu </Link>|<Link to='/story'> 故事</Link>|<Link to='/toolBox'> 工具箱</Link>
                     </div>
                     <Alert style={{ margin: "16px 0" }} message=':---------------->' />
                     <Breadcrumb>{breadcrumbItems}</Breadcrumb>

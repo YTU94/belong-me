@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react"
-import { HashRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
+import React, { useState } from "react"
+import { BrowserRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
 
-import { Icon, Timeline, Form, Input, Button, Card, Avatar } from "antd"
 import PageFooter from "../../components/pageFooter"
 import DataReverse from "./dataReverse"
 import CardList from "./cardList"
 import UploadImg from "./uploadImg"
 import SubmitCommand from './submitCommand'
 
-let id = 0
-const { Meta } = Card
 
 function Home(params) {
     const [message, setmessage] = useState("")
@@ -27,6 +24,8 @@ function Home(params) {
     const submitMsg = e => {}
     return (
         <div>
+            <br />
+            <h3>⚙ 工具箱</h3>
             <Switch>
                 <Route path='/toolBox/submitCommand' component={SubmitCommand} />
                 <Route path='/toolBox/dataReverse' component={DataReverse} />

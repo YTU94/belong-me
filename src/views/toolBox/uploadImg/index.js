@@ -14,8 +14,6 @@ class Home extends React.Component {
         return (
             <div>
                 <br />
-                <br />
-
                 <UploadFile></UploadFile>
             </div>
         )

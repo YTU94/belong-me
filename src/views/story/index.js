@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react"
 import { Icon, Timeline, Form, Input, Button } from "antd"
 import PageFooter from "../../components/pageFooter"
 
-let id = 0
-
 function Index(params) {
     const [showForm, setshowForm] = useState(false)
     const [message, setmessage] = useState("")
@@ -33,7 +31,8 @@ function Index(params) {
         )
     })
     return (
-        <div>
+        <div className='story'>
+            <br />
             <h3> 🎓毕业后做的些事</h3>
             <br />
             <Timeline>

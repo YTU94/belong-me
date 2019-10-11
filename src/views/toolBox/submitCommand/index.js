@@ -55,7 +55,6 @@ function Index(params) {
 
     return (
         <div className='submit-command'>
-            <h3>远程执行终端命令</h3>
             <Card
                 style={{ width: 300 }}
                 cover={<img alt='example' src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png' />}
