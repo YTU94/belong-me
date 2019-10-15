@@ -1,6 +1,7 @@
 import React from "react"
 import "./index.less"
 import { Avatar, Icon, Button, message } from "antd"
+import UserMsg from "../../components/userMsg"
 
 function Index(params) {
     const checkIn = e => {
@@ -33,9 +34,11 @@ function Index(params) {
 
             <br />
             <div className='list-card'>
-                <Button block onClick={checkIn}>
+                <Button className='sign-btn' block onClick={checkIn}>
                     签到
                 </Button>
+                &nbsp;
+                <UserMsg></UserMsg>
             </div>
         </div>
     )

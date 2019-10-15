@@ -4,15 +4,18 @@ import { message } from "antd"
 // axios.defaults.baseURL = "http://ggapi.ytuj.cn"
 const defaultBaseURL = "http://ggapi.ytuj.cn"
 // const baseURL = "http://api.ytuj.cn"
+const loacalBaseURL = "http://localhost:3001"
 
 const instance = function(baseUrl, params) {
     return new Promise((resolve, reject) => {
         message.loading("加载中", 0)
+        debugger
         // const hide = message.loading('Action in progress..', 0);
         axios({
             method: params.method,
             url: baseUrl + params.url,
-            data: params.data,
+            data: params.data || {},
+            params: params.params || {},
             timeout: 5000
         })
             .then(res => {
@@ -62,9 +65,18 @@ const sendMsg = data => {
         data: data
     })
 }
+
+const getMailCode = data => {
+    return instance(loacalBaseURL, {
+        method: "get",
+        url: "/api/v1/getMailCode",
+        params: data
+    })
+}
 export default {
     submitShell,
     getAppleidList,
     getMsgList,
-    sendMsg
+    sendMsg,
+    getMailCode
 }

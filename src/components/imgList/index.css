@@ -1,0 +1,27 @@
+.img-list-modal {}
+
+.modal-content {
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.options-left {
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: translate(0, -50%);
+    font-size: 26px;
+}
+
+.options-right {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translate(0, -50%);
+    font-size: 26px;
+}
+
+.footer-number {
+    text-align: center;
+}

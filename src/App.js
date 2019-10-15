@@ -39,12 +39,14 @@ const Homes = withRouter(props => {
         </Breadcrumb.Item>
     ].concat(extraBreadcrumbItems)
 
+  
     return (
         <div className='root-app'>
             <Row gutter={40}>
                 <Col span={19} className='white-bg box-shadow'>
                     <div className='demo-nav'>
-                        <Link to='/'>Ytu </Link>|<Link to='/story'> 故事</Link>|<Link to='/toolBox'> 工具箱</Link>
+                        <Link to='/'>Ytu&nbsp;</Link>|<Link to='/story'>&nbsp;故事&nbsp;</Link>|
+                        <Link to='/toolBox'>&nbsp;工具箱&nbsp;</Link>
                     </div>
                     <Alert style={{ margin: "16px 0" }} message=':---------------->' />
                     <Breadcrumb>{breadcrumbItems}</Breadcrumb>

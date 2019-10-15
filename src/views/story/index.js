@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react"
-import { Icon, Timeline, Form, Input, Button } from "antd"
+import { Icon, Timeline, Form, Input, message, Button, Modal } from "antd"
 import PageFooter from "../../components/pageFooter"
+import Api from "../../utils/api"
 
 function Index(params) {
+    const [showNameForm, setshowNameForm] = useState(false)
     const [showForm, setshowForm] = useState(false)
+    const [nickName, setnickName] = useState("")
     const [message, setmessage] = useState("")
     const [messagelist, setmessageList] = useState(["start"])
     useEffect(() => {
         setmessage("")
     }, [messagelist])
+
+    const nickNameChange = e => {
+        setnickName(e.target.value)
+    }
 
     const msgChange = e => {
         setmessage(e.target.value)
@@ -21,8 +28,16 @@ function Index(params) {
         setmessageList([...messagelist, message])
     }
 
-    const save = e => {}
+    const save = e => {
+        setshowNameForm(true)
+    }
 
+    const handleOk = e => {
+        if (!nickName) return message.warning("请先输入昵称")
+        Api.sendMsg({ nickName, message }).then(res => {
+            console.log(res)
+        })
+    }
     const timeLineData = messagelist.map((e, i) => {
         return (
             <Timeline.Item key={i} dot={<Icon type='clock-circle-o' style={{ fontSize: "16px" }} />}>
@@ -83,7 +98,9 @@ function Index(params) {
             ) : (
                 ""
             )}
-
+            <Modal visible={showNameForm} title='输入昵称' onOk={handleOk} onCancel={() => setshowNameForm(false)} okText='提交'>
+                <Input placeholder='Please input your nick name' onChange={nickNameChange} value={nickName}></Input>
+            </Modal>
             <PageFooter />
         </div>
     )
