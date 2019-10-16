@@ -23,7 +23,7 @@ const instance = function(baseUrl, params) {
                     if (res.data.code === 0) {
                         resolve(res.data)
                     } else {
-                        message.error(res.data.msg || "未知错误")
+                        message.info(res.data.msg || "未知错误")
                         reject(res.data)
                     }
                 } else {

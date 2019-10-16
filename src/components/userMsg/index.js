@@ -66,6 +66,10 @@ export default function Index(params) {
         return Boolean(nickName && email && password && confirmPassword && valCode)
     }
 
+    const canLogin = e => {
+        return Boolean(account && pass)
+    }
+
     const startTiming = e => {
         let time = 60
         let t = setInterval(() => {
@@ -98,7 +102,14 @@ export default function Index(params) {
                 </div>
             )}
 
-            <Modal title='登录' visible={showLoginForm} onCancel={() => setshowLoginForm(false)} onOk={loginSubmit}>
+            <Modal
+                title='登录'
+                okText='登录'
+                visible={showLoginForm}
+                okButtonProps={{ disabled: !canLogin() }}
+                onCancel={() => setshowLoginForm(false)}
+                onOk={loginSubmit}
+            >
                 <Form>
                     <Form.Item>
                         <Input
@@ -122,8 +133,8 @@ export default function Index(params) {
 
             <Modal
                 title='注册'
-                visible={showRegistForm}
                 okText='注册'
+                visible={showRegistForm}
                 okButtonProps={{ disabled: !canRegist() }}
                 onCancel={() => setshowRegistForm(false)}
                 onOk={registSubmit}
