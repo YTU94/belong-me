@@ -1,14 +1,16 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Button, Modal, Input, Form, Icon, message } from "antd"
 import "./index.less"
 import Api from "../../utils/api"
+import { myContext } from "../../reducer"
 
 export default function Index(params) {
+    const { state, dispatch } = useContext(myContext)
     const [timeMsg, settimeMsg] = useState("获取验证码")
     const [isLogined, setisLogined] = useState(false)
     // login
-    const [account, setaccount] = useState("wangwenqing@souche.com")
-    const [pass, setpass] = useState("")
+    const [account, setaccount] = useState("1296642816@qq.com")
+    const [pass, setpass] = useState("234234")
     // regist
     const [nickName, setnickName] = useState("")
     const [email, setemail] = useState("")
@@ -28,6 +30,7 @@ export default function Index(params) {
             console.log(res)
             setshowLoginForm(false)
             setisLogined(true)
+            dispatch({ type: "setNickname", nickname: res.data.nickname })
             message.success("登录成功")
             localStorage.setItem("userInfo", JSON.stringify(res))
         })
@@ -47,7 +50,7 @@ export default function Index(params) {
         })
     }
     const getCode = e => {
-        if (!email) return message.warning("请正确填写注册邮箱")
+        if (!/^\w+@[a-z0-9]+\.[a-z]+$/i.test(email)) return message.warning("请正确填写注册邮箱")
         Api.getMailCode({
             email: email
         }).then(res => {
@@ -57,7 +60,9 @@ export default function Index(params) {
     }
 
     const layout = e => {
-        message.success('退出成功')
+        dispatch({ type: "layout", nickname: "" })
+        setisLogined(false)
+        message.success("退出成功")
     }
     const canRegist = e => {
         return Boolean(nickName && email && password && confirmPassword && valCode)
@@ -82,7 +87,7 @@ export default function Index(params) {
             {!isLogined ? (
                 <div className='login-before'>
                     <Button type='primary' onClick={() => setshowLoginForm(true)}>
-                        登录
+                        登录{state.count}
                     </Button>
                     <Button type='' onClick={() => setshowRegistForm(true)}>
                         注册

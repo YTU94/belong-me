@@ -18,7 +18,6 @@ const instance = function(baseUrl, params) {
             timeout: 5000
         })
             .then(res => {
-                debugger
                 message.destroy()
                 if (res.status & 200) {
                     if (res.data.code === 0) {

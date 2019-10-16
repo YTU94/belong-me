@@ -1,17 +1,19 @@
-import React from "react"
+import React, { useReducer } from "react"
 import "./index.less"
 import { Avatar, Icon, Button, message } from "antd"
 import UserMsg from "../../components/userMsg"
-
+import { reducer, myContext } from "../../reducer"
 function Index(params) {
     const checkIn = e => {
         message.success("签到成功")
     }
+    const [state, dispatch] = useReducer(reducer, { nickname: '' })
+
     return (
         <div className='side-bar'>
             <div className='top-card'>
                 <h2 className='text-align-center'>
-                    林逸 —— <Avatar style={{ backgroundColor: "#87d068" }}>YTU</Avatar>
+                    {state.nickname || 'user'} —— <Avatar style={{ backgroundColor: "#87d068" }}>YTU</Avatar>
                 </h2>
                 <br />
                 <div className='text-introduction'>
@@ -38,7 +40,9 @@ function Index(params) {
                     签到
                 </Button>
                 &nbsp;
-                <UserMsg></UserMsg>
+                <myContext.Provider value={{ state, dispatch }}>
+                    <UserMsg></UserMsg>
+                </myContext.Provider>
             </div>
         </div>
     )
