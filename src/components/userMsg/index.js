@@ -9,8 +9,8 @@ export default function Index(params) {
     const [timeMsg, settimeMsg] = useState("获取验证码")
     const [isLogined, setisLogined] = useState(false)
     // login
-    const [account, setaccount] = useState("1296642816@qq.com")
-    const [pass, setpass] = useState("234234")
+    const [account, setaccount] = useState("")
+    const [pass, setpass] = useState("")
     // regist
     const [nickName, setnickName] = useState("")
     const [email, setemail] = useState("")
@@ -27,7 +27,6 @@ export default function Index(params) {
             account: account,
             pass: pass
         }).then(res => {
-            console.log(res)
             setshowLoginForm(false)
             setisLogined(true)
             dispatch({ type: "setNickname", nickname: res.data.nickname })
@@ -44,7 +43,6 @@ export default function Index(params) {
             nickName: nickName,
             password: password
         }).then(res => {
-            console.log(res)
             message.success("注册成功")
             setshowRegistForm(false)
         })
@@ -73,7 +71,6 @@ export default function Index(params) {
         let t = setInterval(() => {
             if (time > 0) {
                 time--
-                console.log(time, time)
                 settimeMsg(`${time}秒后重新获取`)
             } else {
                 clearTimeout(t)
