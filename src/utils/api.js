@@ -9,7 +9,6 @@ const loacalBaseURL = "http://localhost:3001"
 const instance = function(baseUrl, params) {
     return new Promise((resolve, reject) => {
         message.loading("加载中", 0)
-        debugger
         // const hide = message.loading('Action in progress..', 0);
         axios({
             method: params.method,
@@ -19,9 +18,15 @@ const instance = function(baseUrl, params) {
             timeout: 5000
         })
             .then(res => {
+                debugger
                 message.destroy()
                 if (res.status & 200) {
-                    resolve(res.data)
+                    if (res.data.code === 0) {
+                        resolve(res.data)
+                    } else {
+                        message.error(res.data.msg || "未知错误")
+                        reject(res.data)
+                    }
                 } else {
                     message.error(res.data.msg || "未知错误")
                 }
@@ -73,10 +78,27 @@ const getMailCode = data => {
         params: data
     })
 }
+
+const regist = data => {
+    return instance(loacalBaseURL, {
+        method: "post",
+        url: "/api/v1/regist",
+        data: data
+    })
+}
+const login = data => {
+    return instance(loacalBaseURL, {
+        method: "post",
+        url: "/api/v1/login",
+        data: data
+    })
+}
 export default {
     submitShell,
     getAppleidList,
     getMsgList,
     sendMsg,
-    getMailCode
+    getMailCode,
+    regist,
+    login
 }
