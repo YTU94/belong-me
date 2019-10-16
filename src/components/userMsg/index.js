@@ -55,6 +55,10 @@ export default function Index(params) {
             startTiming()
         })
     }
+
+    const layout = e => {
+        message.success('退出成功')
+    }
     const canRegist = e => {
         return Boolean(nickName && email && password && confirmPassword && valCode)
     }
@@ -86,7 +90,7 @@ export default function Index(params) {
                 </div>
             ) : (
                 <div className='login-after'>
-                    <Button type='' block onClick={() => setshowRegistForm(true)}>
+                    <Button type='' block onClick={layout}>
                         退出登录
                     </Button>
                 </div>
