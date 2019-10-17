@@ -11,6 +11,7 @@
 # production
 # 移除 添加打包后文件
 /build
+/build.zip
 
 # misc
 .DS_Store
