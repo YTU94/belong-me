@@ -7,7 +7,7 @@ function Index(params) {
     const checkIn = e => {
         message.success("签到成功")
     }
-    const [state, dispatch] = useReducer(reducer, { nickname: '' })
+    const [state, dispatch] = useReducer(reducer, { nickname: '', email: '' })
 
     return (
         <div className='side-bar'>
@@ -29,7 +29,7 @@ function Index(params) {
                 <div className='text-introduction'>
                     <Icon type='mail' />
                     &nbsp;&nbsp;
-                    <a href=''>453980450@qq.com</a>
+                    <a href=''>{state.email || '- -'}</a>
                 </div>
                 <div className='text-introduction'>LIVE：且随疾风前行</div>
             </div>

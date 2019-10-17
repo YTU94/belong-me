@@ -29,7 +29,7 @@ export default function Index(params) {
         }).then(res => {
             setshowLoginForm(false)
             setisLogined(true)
-            dispatch({ type: "setNickname", nickname: res.data.nickname })
+            dispatch({ type: "setNickname", nickname: res.data.nickname, email: res.data.email })
             message.success("登录成功")
             localStorage.setItem("userInfo", JSON.stringify(res))
         })
@@ -58,7 +58,7 @@ export default function Index(params) {
     }
 
     const layout = e => {
-        dispatch({ type: "layout", nickname: "" })
+        dispatch({ type: "layout", nickname: "", email: "" })
         setisLogined(false)
         message.success("退出成功")
     }

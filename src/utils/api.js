@@ -1,7 +1,6 @@
 import axios from "axios"
 import { message } from "antd"
 
-// axios.defaults.baseURL = "http://ggapi.ytuj.cn"
 const defaultBaseURL = "http://ggapi.ytuj.cn"
 // const baseURL = "http://api.ytuj.cn"
 const loacalBaseURL = "http://localhost:3001"
@@ -71,7 +70,7 @@ const sendMsg = data => {
 }
 
 const getMailCode = data => {
-    return instance(loacalBaseURL, {
+    return instance(defaultBaseURL, {
         method: "get",
         url: "/api/v1/getMailCode",
         params: data
@@ -79,14 +78,14 @@ const getMailCode = data => {
 }
 
 const regist = data => {
-    return instance(loacalBaseURL, {
+    return instance(defaultBaseURL, {
         method: "post",
         url: "/api/v1/regist",
         data: data
     })
 }
 const login = data => {
-    return instance(loacalBaseURL, {
+    return instance(defaultBaseURL, {
         method: "post",
         url: "/api/v1/login",
         data: data
