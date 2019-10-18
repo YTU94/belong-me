@@ -53,6 +53,14 @@ const getAppleidList = data => {
     })
 }
 
+const getOtherIdList = data => {
+    return instance(defaultBaseURL, {
+        method: "get",
+        url: "/api/otherIdList",
+        data: data
+    })
+}
+
 const getMsgList = data => {
     return instance(defaultBaseURL, {
         method: "get",
@@ -94,6 +102,7 @@ const login = data => {
 export default {
     submitShell,
     getAppleidList,
+    getOtherIdList,
     getMsgList,
     sendMsg,
     getMailCode,

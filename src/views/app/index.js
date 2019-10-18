@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { List, Avatar } from "antd"
+import { List, Avatar, Button } from "antd"
 import PageFooter from "../../components/pageFooter"
 import Api from "../../utils/api"
 
@@ -7,23 +7,44 @@ import "./index.less"
 
 function Home() {
     const [listData, setListdata] = useState([])
+    const initData = e => {
+        Api.getAppleidList({}).then(res => {
+            setListdata(res.data)
+        })
+    }
     const copyPwd = e => {
         // const id = `pwdId${e.id}` || 0
         // var Url2 = document.getElementById(id)
         // Url2.select()
         // document.execCommand("copy", true)
     }
-
-    useEffect(() => {
-        Api.getAppleidList({}).then(res => {
-            setListdata(res.data)
+    const changeList = e => {
+        console.log(e)
+        if (e == 0) {
+            initData()
+        }
+        Api.getOtherIdList({}).then(res => {
+            setListdata(res.data.filter(i => i.type === e))
         })
+    }
+    useEffect(() => {
+        initData()
     }, [])
 
     return (
         <div className='app'>
             <br />
-            <h3> AppleId</h3>
+            <section>
+                <Button type='link' onClick={changeList.bind(this, 0)}>
+                     AppleId
+                </Button>
+                <Button type='link' onClick={changeList.bind(this, 1)}>
+                    ☁️ 百度云
+                </Button>
+                <Button type='link' onClick={changeList.bind(this, 2)}>
+                    ⚡️ 迅雷
+                </Button>
+            </section>
             <List
                 itemLayout='vertical'
                 size='large'
