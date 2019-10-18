@@ -38,8 +38,8 @@ const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // style files regexes
-const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
+const cssRegex = /\.(css|less)$/;
+const cssModuleRegex = /\.module\.(css|less)$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
@@ -409,9 +409,9 @@ module.exports = function(webpackEnv) {
               test: cssRegex,
               exclude: cssModuleRegex,
               use: getStyleLoaders({
-                importLoaders: 1,
+                importLoaders: 2, // change 1 to 2
                 sourceMap: isEnvProduction && shouldUseSourceMap,
-              }),
+              }, "less-loader"),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
               // Remove this when webpack adds a warning or an error for this.

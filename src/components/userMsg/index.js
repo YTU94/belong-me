@@ -87,10 +87,10 @@ export default function Index(params) {
         <div className='user-right-tab'>
             {!isLogined ? (
                 <div className='login-before'>
-                    <Button type='primary' onClick={() => setshowLoginForm(true)}>
+                    <Button className='auto-btn' type='primary' onClick={() => setshowLoginForm(true)}>
                         登录{state.count}
                     </Button>
-                    <Button type='' onClick={() => setshowRegistForm(true)}>
+                    <Button className='auto-btn' type='' onClick={() => setshowRegistForm(true)}>
                         注册
                     </Button>
                 </div>
