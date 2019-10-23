@@ -24,12 +24,32 @@ function Home() {
             initData()
         }
         Api.getOtherIdList({}).then(res => {
-            setListdata(res.data.filter(i => i.type === e))
+            let arr = res.data.filter(i => i.type === e)
+            setListdata(spliceAccountList(arr))
         })
     }
     useEffect(() => {
         initData()
     }, [])
+
+    const spliceAccountList = arr => {
+        let a = []
+        arr.forEach(e => {
+            let accountArr = e.account.split(",")
+            let pwdArr = e.password.split(",")
+            if (accountArr.length == pwdArr.length) {
+                accountArr.forEach((f, i) => {
+                    a.push({
+                        account: f,
+                        name: e.name,
+                        remark: e.remark,
+                        password: pwdArr[i]
+                    })
+                })
+            }
+        })
+        return a
+    }
 
     return (
         <div className='app'>
