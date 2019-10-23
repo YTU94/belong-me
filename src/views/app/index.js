@@ -80,10 +80,10 @@ function Home() {
                         <b>请谨慎使用</b>，出任何问题与本站无关
                     </div>
                 }
-                renderItem={item => (
+                renderItem={(item, index) => (
                     <List.Item key={item.title}>
                         <List.Item.Meta
-                            avatar={<Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>{item.id}</Avatar>}
+                            avatar={<Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>{index + 1}</Avatar>}
                             title={
                                 <a href={item.href}>
                                     {item.name} : {item.account}
