@@ -6,7 +6,7 @@ function PageFooter() {
     return (
         <div className='page-footer'>
             <Divider />
-            <p className='page-footer-line'>2019@ytu 联系方式</p>
+            <p className='page-footer-line'>ytu_94@163.com 联系方式</p>
         </div>
     )
 }

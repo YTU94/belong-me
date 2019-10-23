@@ -1,7 +1,7 @@
 import React from "react"
 import { Card, Col, Row, Avatar } from "antd"
 import { BrowserRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
-import './index.less'
+import "./index.less"
 
 const { Meta } = Card
 
@@ -27,11 +27,18 @@ function Index(params) {
             title: "提交终端命令",
             description: "提交终端命令",
             backgroundColor: "#87d068"
+        },
+        {
+            path: "/toolBox/",
+            avatarText: "WL",
+            title: "未来不可欺",
+            description: "未来不可欺",
+            backgroundColor: "rgb(86, 162, 248)"
         }
     ]
     return (
         <div className='card-list'>
-            <Row gutter={16}>
+            <Row gutter={[16, 16]}>
                 {cardList.map(e => (
                     <Col span={8}>
                         <Card>

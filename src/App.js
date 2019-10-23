@@ -6,6 +6,7 @@ import Apps from "./views/app"
 import story from "./views/story"
 import toolBox from "./views/toolBox"
 import SideBar from "./views/sideBar"
+import Footer from "./components/footer"
 
 const breadcrumbNameMap = {
     "/apps": "app",
@@ -39,28 +40,31 @@ const Homes = withRouter(props => {
         </Breadcrumb.Item>
     ].concat(extraBreadcrumbItems)
 
-  
     return (
         <div className='root-app'>
-            <Row gutter={40}>
-                <Col span={19} className='white-bg box-shadow'>
-                    <div className='demo-nav'>
-                        <Link to='/'>Ytu&nbsp;</Link>|<Link to='/story'>&nbsp;故事&nbsp;</Link>|
-                        <Link to='/toolBox'>&nbsp;工具箱&nbsp;</Link>
-                    </div>
-                    <Alert style={{ margin: "16px 0" }} message=':---------------->' />
-                    <Breadcrumb>{breadcrumbItems}</Breadcrumb>
+            <div className='container'>
+                <Row gutter={40}>
+                    <Col span={19} className='white-bg box-shadow'>
+                        <div className='demo-nav'>
+                            <Link to='/'>Ytu&nbsp;</Link>|<Link to='/story'>&nbsp;故事&nbsp;</Link>|
+                            <Link to='/toolBox'>&nbsp;工具箱&nbsp;</Link>
+                        </div>
+                        <Alert style={{ margin: "16px 0" }} message=':---------------->' />
+                        <Breadcrumb>{breadcrumbItems}</Breadcrumb>
 
-                    <Switch>
-                        <Route path='/toolBox' component={toolBox} />
-                        <Route path='/story' component={story} />
-                        <Route path='' component={Apps} />
-                    </Switch>
-                </Col>
-                <Col span={5}>
-                    <SideBar />
-                </Col>
-            </Row>
+                        <Switch>
+                            <Route path='/toolBox' component={toolBox} />
+                            <Route path='/story' component={story} />
+                            <Route path='' component={Apps} />
+                        </Switch>
+                    </Col>
+                    <Col span={5}>
+                        <SideBar />
+                    </Col>
+                </Row>
+            </div>
+
+            <Footer />
         </div>
     )
 })
