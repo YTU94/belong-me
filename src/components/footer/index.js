@@ -9,7 +9,7 @@ export default function Index(params) {
             <div className='content'>
                 <h4>
                     Blog:
-                    <Button type='link' style={{ color: "gray" }} href='https://ytuj.cn'>
+                    <Button type='link' className='bt' href='https://ytuj.cn'>
                         ytuj.cn
                     </Button>
                 </h4>
@@ -17,7 +17,7 @@ export default function Index(params) {
             <div className='bottom-bar'>
                 <div className='left'>Copyright © 2019 WebYtu. All rights reserved.</div>
                 <div className='right'>
-                    <Button type='link' style={{ color: "#a59f9f" }} href='https://github.com/YTU94/belong-me'>
+                    <Button type='link' className='bt' href='https://github.com/YTU94/belong-me'>
                         github
                     </Button>
                 </div>

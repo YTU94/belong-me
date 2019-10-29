@@ -3,6 +3,8 @@ import "./App.less"
 import { BrowserRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
 import { Breadcrumb, Alert, Col, Row } from "antd"
 import Apps from "./views/app"
+import Price from "./views/price"
+
 import story from "./views/story"
 import toolBox from "./views/toolBox"
 import SideBar from "./views/sideBar"
@@ -10,6 +12,7 @@ import Footer from "./components/footer"
 
 const breadcrumbNameMap = {
     "/apps": "app",
+    "/price": "price",
     "/story": "story",
     "/uploadImg": "uploadImg",
     "/toolBox": "toolBox",
@@ -47,7 +50,7 @@ const Homes = withRouter(props => {
                     <Col span={19} className='white-bg box-shadow'>
                         <div className='demo-nav'>
                             <Link to='/'>Ytu&nbsp;</Link>|<Link to='/story'>&nbsp;故事&nbsp;</Link>|
-                            <Link to='/toolBox'>&nbsp;工具箱&nbsp;</Link>
+                            <Link to='/toolBox'>&nbsp;工具箱&nbsp;</Link>|<Link to='/price'>&nbsp;收益&nbsp;</Link>
                         </div>
                         <Alert style={{ margin: "16px 0" }} message=':---------------->' />
                         <Breadcrumb>{breadcrumbItems}</Breadcrumb>
@@ -55,6 +58,7 @@ const Homes = withRouter(props => {
                         <Switch>
                             <Route path='/toolBox' component={toolBox} />
                             <Route path='/story' component={story} />
+                            <Route path='/price' component={Price} />
                             <Route path='' component={Apps} />
                         </Switch>
                     </Col>
