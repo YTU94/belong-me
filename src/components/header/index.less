@@ -11,14 +11,6 @@
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, .22);
 
-    .bt {
-        color: #556;
-
-        &:hover {
-            color: #778087;
-
-        }
-    }
 
     .bottom-bar {
         display: flex;
@@ -37,9 +29,16 @@
         }
 
         .right {
-            .ant-btn {
+
+            a {
+                color: #556;
                 font-weight: 500;
                 padding: 0 10px;
+
+                &:hover {
+                    color: #778087;
+
+                }
 
                 &:last-child {
                     padding-right: 0;
