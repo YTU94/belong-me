@@ -3,26 +3,19 @@ import "./index.less"
 import { BrowserRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
 import { Breadcrumb, Alert, Col, Row } from "antd"
 import Apps from "../app"
-import Price from "../price"
-
 import story from "../story"
 import toolBox from "../toolBox"
 import SideBar from "../sideBar"
 
 const breadcrumbNameMap = {
     "/apps": "app",
-    "/price": "price",
     "/story": "story",
     "/uploadImg": "uploadImg",
     "/toolBox": "toolBox",
 
     "/toolBox/dataReverse": "dataReverse",
     "/toolBox/uploadImg": "uploadImg",
-    "/toolBox/submitCommand": "submitCommand",
-
-    "/apps/2": "Application2",
-    "/apps/1/detail": "Detail",
-    "/apps/2/detail": "Detail"
+    "/toolBox/submitCommand": "submitCommand"
 }
 
 const Homes = withRouter(props => {
@@ -56,7 +49,6 @@ const Homes = withRouter(props => {
                     <Switch>
                         <Route path='/toolBox' component={toolBox} />
                         <Route path='/story' component={story} />
-                        <Route path='/price' component={Price} />
                         <Route path='' component={Apps} />
                     </Switch>
                 </Col>
