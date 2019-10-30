@@ -9,6 +9,7 @@ import story from "./views/story"
 import toolBox from "./views/toolBox"
 import SideBar from "./views/sideBar"
 import Footer from "./components/footer"
+import Header from "./components/header"
 
 const breadcrumbNameMap = {
     "/apps": "app",
@@ -45,6 +46,14 @@ const Homes = withRouter(props => {
 
     return (
         <div className='root-app'>
+            <Header></Header>
+
+            <Switch>
+            
+                <Route path='/price' component={Price} />
+                <Route path='' component={Apps} />
+            </Switch>
+
             <div className='container'>
                 <Row gutter={40}>
                     <Col span={19} className='white-bg box-shadow'>

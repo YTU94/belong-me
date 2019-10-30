@@ -6,7 +6,6 @@ import Api from "../../utils/api"
 import "./index.less"
 
 function Index() {
-    
     const [listData, setListdata] = useState([])
     const initData = e => {
         Api.getAppleidList({}).then(res => {
@@ -53,59 +52,7 @@ function Index() {
         return a
     }
 
-    return (
-        <div className='app'>
-            <Button onClick={addIncome}>新增受益</Button>
-            <br />
-            {/* <section>
-                <Button type='link' onClick={changeList.bind(this, 0)}>
-                     AppleId
-                </Button>
-                <Button type='link' onClick={changeList.bind(this, 1)}>
-                    ☁️ 百度云
-                </Button>
-                <Button type='link' onClick={changeList.bind(this, 2)}>
-                    ⚡️ 迅雷
-                </Button>
-            </section> */}
-            <List
-                itemLayout='vertical'
-                size='large'
-                pagination={{
-                    onChange: page => {
-                        console.log(page)
-                    },
-                    pageSize: 5
-                }}
-                dataSource={listData}
-                footer={
-                    <div>
-                        <b>请谨慎使用</b>，出任何问题与本站无关
-                    </div>
-                }
-                renderItem={(item, index) => (
-                    <List.Item key={item.title}>
-                        <List.Item.Meta
-                            avatar={<Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>{index + 1}</Avatar>}
-                            title={
-                                <a href={item.href}>
-                                    {item.name} : {item.account}
-                                </a>
-                            }
-                            description={item.remark}
-                        />
-                        <div>
-                            密码 ： &nbsp;
-                            <a href='#' onClick={copyPwd.bind(this, item)}>
-                                {item.password}
-                            </a>
-                        </div>
-                    </List.Item>
-                )}
-            />
-            <PageFooter />
-        </div>
-    )
+    return <iframe src='http://ytuj.cn/' frameborder='0' className='iframe-page'></iframe>
 }
 
 export default Index
