@@ -42,7 +42,7 @@ function Index(params) {
                 {cardList.map(e => (
                     <Col span={8}>
                         <Card>
-                            <Link to={e.path}>
+                            <Link className='list-card' to={e.path}>
                                 <Meta
                                     avatar={<Avatar style={{ backgroundColor: e.backgroundColor }}>{e.avatarText}</Avatar>}
                                     title={e.title}

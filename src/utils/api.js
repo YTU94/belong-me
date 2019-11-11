@@ -1,7 +1,7 @@
 import axios from "axios"
 import { message } from "antd"
 
-const defaultBaseURL = "http://ggapi.ytuj.cn"
+const defaultBaseURL = "https://ggapi.ytuj.cn"
 // const baseURL = "http://api.ytuj.cn"
 const loacalBaseURL = "http://localhost:3001"
 
