@@ -3,9 +3,10 @@ import { Input, Button, Select, Divider, Table, message } from "antd"
 import Api from "../../../utils/api"
 
 function Index(params) {
-    const [name, setname] = useState("")
-    const [unit, setunit] = useState("")
-    const [price, setprice] = useState("")
+    const [name, setname] = useState("--")
+    const [unit, setunit] = useState("--")
+    const [price, setprice] = useState("--")
+    const [changePercent24Hr, setchangePercent24Hr] = useState("")
 
     const [value, setvalue] = useState("")
 
@@ -22,6 +23,7 @@ function Index(params) {
             setname(r.symbol)
             setprice((+r.priceUsd).toFixed(4))
             setunit("USD")
+            setchangePercent24Hr(Number(r.changePercent24Hr).toFixed(2))
         })
     }
 
@@ -44,21 +46,28 @@ function Index(params) {
             dataIndex: "price",
             key: "price"
         },
+
+        {
+            title: "24Hr",
+            dataIndex: "changePercent24Hr",
+            key: "changePercent24Hr",
+            render: text => <a style={{ color: Number(text) < 0 ? "red" : "green" }}>{text}{text ? '&' : '--'}</a>
+        },
         {
             title: "unit",
             dataIndex: "unit",
             key: "unit"
-        },
-        {
-            title: "Action",
-            key: "action",
-            render: (text, record) => (
-                <span>
-                    <Divider type='vertical' />
-                    <a>--</a>
-                </span>
-            )
         }
+        // {
+        //     title: "Action",
+        //     key: "action",
+        //     render: (text, record) => (
+        //         <span>
+        //             <Divider type='vertical' />
+        //             <a>--</a>
+        //         </span>
+        //     )
+        // }
     ]
 
     const data = [
@@ -66,7 +75,8 @@ function Index(params) {
             key: "1",
             name: name,
             unit: unit,
-            price: price
+            price: price,
+            changePercent24Hr: changePercent24Hr
         }
     ]
 
