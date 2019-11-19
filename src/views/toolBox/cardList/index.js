@@ -1,6 +1,6 @@
 import React from "react"
 import { Card, Col, Row, Avatar } from "antd"
-import { BrowserRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
+import { HashRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
 import "./index.less"
 
 const { Meta } = Card
@@ -47,7 +47,7 @@ function Index(params) {
         <div className='card-list'>
             <Row gutter={[16, 16]}>
                 {cardList.map(e => (
-                    <Col span={8}>
+                    <Col xs={24} md={8}>
                         <Card>
                             <Link className='list-card' to={e.path}>
                                 <Meta

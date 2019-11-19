@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.less"
-import { BrowserRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
+import { HashRouter as Router, Route, Switch, Link, withRouter } from "react-router-dom"
 import Blog from "./views/blog"
 
 import Footer from "./components/footer"
