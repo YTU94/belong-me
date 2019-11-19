@@ -21,13 +21,14 @@ const shellList = [
     {
         key: 2,
         name: "自我更新",
-        shell: "cd /opt/out/belong-me&rm -rf build&git pull origin master"
+        shell: "cd /www/wwwroot/belong-me/ && rm -rf build && git pull origin master"
     }
 ]
 
 function Index(params) {
     const [visible, setvisible] = useState(false)
     const [curShell, setcurShell] = useState("")
+    const [value, setvalue] = useState("")
     const shellForm = React.createRef()
     const showModal = () => {
         setvisible(true)
@@ -39,9 +40,14 @@ function Index(params) {
         Api.submitShell({
             shell: shellForm.current.state.shell,
             password: shellForm.current.state.password
-        }).then(res => {
-            message.info(res.msg)
         })
+            .then(res => {
+                message.info(res.msg)
+                setvalue(res.data.stdout)
+            })
+            .catch(err => {
+                setvalue("")
+            })
     }
 
     const handleCancel = e => {
@@ -71,6 +77,7 @@ function Index(params) {
                 <Button type='primary' onClick={showModal}>
                     Submit Shell
                 </Button>
+                <textarea className='textarea' placeholder='...' name='' id='' cols='30' rows='10' value={value}></textarea>
                 <Modal title='Submit Shell' visible={visible} onOk={handleOk} onCancel={handleCancel} okText='submit'>
                     <p>Please enter the shell command and execute password</p>
                     <b>Shell：</b>

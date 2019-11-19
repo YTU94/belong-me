@@ -4,13 +4,15 @@ import { BrowserRouter as Router, Route, Switch, Link, withRouter } from "react-
 import { Breadcrumb, Alert, Col, Row } from "antd"
 import Apps from "../app"
 import story from "../story"
-
+import target from '../target'
 import toolBox from "../toolBox"
 import SideBar from "../sideBar"
 
 const breadcrumbNameMap = {
     "/apps": "app",
     "/story": "story",
+    "/target": "target",
+
     "/uploadImg": "uploadImg",
     "/toolBox": "toolBox",
 
@@ -42,7 +44,9 @@ const Homes = withRouter(props => {
                 <Col span={19} className='white-bg box-shadow'>
                     <div className='demo-nav'>
                         <Link to='/'>Ytu&nbsp;</Link>|<Link to='/story'>&nbsp;故事&nbsp;</Link>|
-                        <Link to='/toolBox'>&nbsp;工具箱&nbsp;</Link>
+                        <Link to='/toolBox'>&nbsp;工具箱&nbsp;</Link>|
+                        <Link to='/target'>&nbsp;目标&nbsp;</Link>
+
                     </div>
                     <Alert style={{ margin: "16px 0" }} message=':---------------->' />
                     <Breadcrumb>{breadcrumbItems}</Breadcrumb>
@@ -50,6 +54,7 @@ const Homes = withRouter(props => {
                     <Switch>
                         <Route path='/toolBox' component={toolBox} />
                         <Route path='/story' component={story} />
+                        <Route path='/target' component={target} />
                         <Route path='' component={Apps} />
                     </Switch>
                 </Col>
