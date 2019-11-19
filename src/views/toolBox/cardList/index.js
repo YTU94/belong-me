@@ -29,6 +29,13 @@ function Index(params) {
             backgroundColor: "#87d068"
         },
         {
+            path: "/toolBox/btcSearch",
+            avatarText: "BS",
+            title: "比特币查询",
+            description: "比特币查询",
+            backgroundColor: "#87d068"
+        },
+        {
             path: "/toolBox/",
             avatarText: "WL",
             title: "未来不可期",

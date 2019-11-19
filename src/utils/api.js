@@ -4,7 +4,7 @@ import { message } from "antd"
 const defaultBaseURL = "https://ggapi.ytuj.cn"
 // const baseURL = "http://api.ytuj.cn"
 const loacalBaseURL = "http://localhost:3001"
-
+const coinCapBaseURL = "http://api.coincap.io"
 const instance = function(baseUrl, params) {
     return new Promise((resolve, reject) => {
         message.loading("加载中", 0)
@@ -14,12 +14,14 @@ const instance = function(baseUrl, params) {
             url: baseUrl + params.url,
             data: params.data || {},
             params: params.params || {},
-            timeout: 5000
+            timeout: 60000
         })
             .then(res => {
                 message.destroy()
                 if (res.status & 200) {
                     if (res.data.code === 0) {
+                        resolve(res.data)
+                    } else if (Array.isArray(res.data.data)) {
                         resolve(res.data)
                     } else {
                         message.info(res.data.msg || "未知错误")
@@ -99,6 +101,14 @@ const login = data => {
         data: data
     })
 }
+
+const btcSearch = data => {
+    return instance(coinCapBaseURL, {
+        method: "get",
+        url: "/v2/assets",
+        params: data
+    })
+}
 export default {
     submitShell,
     getAppleidList,
@@ -107,5 +117,6 @@ export default {
     sendMsg,
     getMailCode,
     regist,
-    login
+    login,
+    btcSearch
 }

@@ -21,7 +21,7 @@ const shellList = [
     {
         key: 2,
         name: "自我更新",
-        shell: "cd /www/wwwroot/belong-me/ && rm -rf build && git pull origin master"
+        shell: "cd /www/wwwroot/belong-me/ && git pull origin master && npm run build"
     }
 ]
 

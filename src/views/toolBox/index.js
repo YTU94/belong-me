@@ -6,7 +6,7 @@ import DataReverse from "./dataReverse"
 import CardList from "./cardList"
 import UploadImg from "./uploadImg"
 import SubmitCommand from './submitCommand'
-
+import BtcSearch from './btcSearch'
 
 function Home(params) {
     const [message, setmessage] = useState("")
@@ -30,6 +30,7 @@ function Home(params) {
                 <Route path='/toolBox/submitCommand' component={SubmitCommand} />
                 <Route path='/toolBox/dataReverse' component={DataReverse} />
                 <Route path='/toolBox/uploadImg' component={UploadImg} />
+                <Route path='/toolBox/btcSearch' component={BtcSearch} />
                 <Route path='/toolBox' component={CardList} />
             </Switch>
             <PageFooter />
