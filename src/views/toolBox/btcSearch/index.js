@@ -16,9 +16,8 @@ function Index(params) {
             return false
         }
         Api.btcSearch({
-            search: value
+            symbol: value
         }).then(res => {
-            console.log(res)
             let r = res.data && res.data[0]
             setname(r.symbol)
             setprice((+r.priceUsd).toFixed(4))

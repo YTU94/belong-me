@@ -21,8 +21,6 @@ const instance = function(baseUrl, params) {
                 if (res.status & 200) {
                     if (res.data.code === 0) {
                         resolve(res.data)
-                    } else if (Array.isArray(res.data.data)) {
-                        resolve(res.data)
                     } else {
                         message.info(res.data.msg || "未知错误")
                         reject(res.data)
@@ -103,9 +101,9 @@ const login = data => {
 }
 
 const btcSearch = data => {
-    return instance(coinCapBaseURL, {
+    return instance(defaultBaseURL, {
         method: "get",
-        url: "/v2/assets",
+        url: "/api/v1/btcSearch",
         params: data
     })
 }
