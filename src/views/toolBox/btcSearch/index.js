@@ -51,7 +51,7 @@ function Index(params) {
             title: "24Hr",
             dataIndex: "changePercent24Hr",
             key: "changePercent24Hr",
-            render: text => <a style={{ color: Number(text) < 0 ? "red" : "green" }}>{text}{text ? '&' : '--'}</a>
+            render: text => <a style={{ color: Number(text) < 0 ? "red" : "green" }}>{text}{text ? '%' : '--'}</a>
         },
         {
             title: "unit",
