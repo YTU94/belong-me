@@ -1,8 +1,11 @@
 import React, { useState } from "react"
 import { Input, Button, Select, Divider, Table, message } from "antd"
 import Api from "../../../utils/api"
+const { Option } = Select
 
 function Index(params) {
+    // const [decimal, setdecimal] = useState("2")
+
     const [name, setname] = useState("--")
     const [unit, setunit] = useState("--")
     const [price, setprice] = useState("--")
@@ -68,8 +71,8 @@ function Index(params) {
         //     key: "action",
         //     render: (text, record) => (
         //         <span>
-        //             <Divider type='vertical' />
-        //             <a>--</a>
+        //             {/* <Divider type='vertical' /> */}
+        //             <a>⭐️</a>
         //         </span>
         //     )
         // }
@@ -84,7 +87,7 @@ function Index(params) {
             changePercent24Hr: changePercent24Hr
         }
     ]
-
+    const handleChangeDecimal = e => {}
     return (
         <div className='activitys-list'>
             <br />
@@ -101,7 +104,7 @@ function Index(params) {
                     查找
                 </Button>
                 &nbsp;&nbsp;
-                <Button className='hide-in-h5' type='danger' onClick={clear}>
+                <Button className='hide-in-h5' type='default' onClick={clear}>
                     清空
                 </Button>
             </div>
