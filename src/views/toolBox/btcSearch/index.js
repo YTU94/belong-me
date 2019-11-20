@@ -51,7 +51,12 @@ function Index(params) {
             title: "24Hr",
             dataIndex: "changePercent24Hr",
             key: "changePercent24Hr",
-            render: text => <a style={{ color: Number(text) < 0 ? "red" : "green" }}>{text}{text ? '%' : '--'}</a>
+            render: text => (
+                <a style={{ color: Number(text) < 0 ? "red" : "green" }}>
+                    {text}
+                    {text ? "%" : "--"}
+                </a>
+            )
         },
         {
             title: "unit",
@@ -96,7 +101,7 @@ function Index(params) {
                     查找
                 </Button>
                 &nbsp;&nbsp;
-                <Button type='danger' onClick={clear}>
+                <Button className='hide-in-h5' type='danger' onClick={clear}>
                     清空
                 </Button>
             </div>

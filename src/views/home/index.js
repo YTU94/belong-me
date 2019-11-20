@@ -42,7 +42,7 @@ const Homes = withRouter(props => {
     return (
         <div className='container'>
             <Row gutter={40}>
-                <Col xs={24} md={19} className='white-bg box-shadow'>
+                <Col xs={24} md={18} className='white-bg box-shadow'>
                     <div className='demo-nav'>
                         <Link to='/'>Ytu&nbsp;</Link>|<Link to='/story'>&nbsp;故事&nbsp;</Link>|
                         <Link to='/toolBox'>&nbsp;工具箱&nbsp;</Link>|<Link to='/target'>&nbsp;目标&nbsp;</Link>
@@ -57,7 +57,7 @@ const Homes = withRouter(props => {
                         <Route path='' component={Apps} />
                     </Switch>
                 </Col>
-                <Col xs={24} md={5}>
+                <Col xs={24} md={6}>
                     <SideBar />
                 </Col>
             </Row>

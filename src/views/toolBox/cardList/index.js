@@ -38,8 +38,8 @@ function Index(params) {
         {
             path: "/toolBox/",
             avatarText: "WL",
-            title: "未来不可期",
-            description: "未来不可期",
+            title: "下一个，你来定",
+            description: "下方邮件私信我👇",
             backgroundColor: "rgb(86, 162, 248)"
         }
     ]
