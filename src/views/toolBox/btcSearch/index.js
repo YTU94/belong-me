@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Input, Button, Select, Divider, Table, message } from "antd"
 import Api from "../../../utils/api"
 const { Option } = Select
 
 function Index(params) {
-    // const [decimal, setdecimal] = useState("2")
+    const [decimal, setdecimal] = useState("")
 
     const [name, setname] = useState("--")
     const [unit, setunit] = useState("--")
@@ -19,6 +19,10 @@ function Index(params) {
             message.warning("请先输入")
             return false
         }
+        search()
+    }
+
+    const search = e => {
         Api.btcSearch({
             symbol: value
         }).then(res => {
@@ -29,14 +33,18 @@ function Index(params) {
             setchangePercent24Hr(Number(r.changePercent24Hr).toFixed(2))
         })
     }
-
     const onChange = e => {
         setvalue(e.target.value)
     }
     const clear = e => {
         setvalue("")
     }
-
+    const handleChangeDecimal = e => {
+        setvalue(e)
+    }
+    useEffect(() => {
+        search()
+    }, [value])
     const columns = [
         {
             title: "Name",
@@ -87,18 +95,19 @@ function Index(params) {
             changePercent24Hr: changePercent24Hr
         }
     ]
-    const handleChangeDecimal = e => {}
+    const arr = [{ value: "BTC" }, { value: "ETH" }, { value: "ATOM" }, { value: "EOS" }, { value: "SEELE" }]
+
     return (
         <div className='activitys-list'>
             <br />
             <div className=''>
                 <Input placeholder='Input Currency' value={value} onChange={onChange} style={{ width: 200 }} />
-                {/* <Select defaultValue={decimal} style={{ width: 120 }} onChange={handleChangeDecimal}>
-                    <Option value='2'>2</Option>
-                    <Option value='8'>8</Option>
-                    <Option value='10'>10</Option>
-                    <Option value='16'>16</Option>
-                </Select> */}
+                &nbsp;&nbsp;
+                <Select defaultValue={decimal} style={{ width: 120 }} onChange={handleChangeDecimal}>
+                    {arr.map(e => (
+                        <Option value={e.value}>{e.value}</Option>
+                    ))}
+                </Select>
                 &nbsp;&nbsp;
                 <Button type='primary' onClick={handleSubmit}>
                     查找
