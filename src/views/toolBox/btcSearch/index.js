@@ -19,7 +19,7 @@ function Index(params) {
             message.warning("请先输入")
             return false
         }
-        search()
+        setdecimal(value)
     }
 
     const search = e => {
@@ -41,10 +41,11 @@ function Index(params) {
     }
     const handleChangeDecimal = e => {
         setvalue(e)
+        setdecimal(e)
     }
     useEffect(() => {
         search()
-    }, [value])
+    }, [decimal])
     const columns = [
         {
             title: "Name",
