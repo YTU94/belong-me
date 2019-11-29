@@ -1,11 +1,15 @@
 import axios from "axios"
 import { message } from "antd"
 
+const NODE_ENV = process.env.NODE_ENV;
+
 const defaultBaseURL = "https://ggapi.ytuj.cn"
 // const baseURL = "http://api.ytuj.cn"
 const loacalBaseURL = "http://localhost:3001"
-const coinCapBaseURL = "http://api.coincap.io"
+
+
 const instance = function(baseUrl, params) {
+    baseUrl = NODE_ENV !== 'production' ? loacalBaseURL : defaultBaseURL
     return new Promise((resolve, reject) => {
         message.loading("加载中", 0)
         // const hide = message.loading('Action in progress..', 0);
@@ -107,6 +111,23 @@ const btcSearch = data => {
         params: data
     })
 }
+
+const btcCollectList = data => {
+    return instance(loacalBaseURL, {
+        method: "get",
+        url: "/api/v1/collectList",
+        params: data
+    })
+}
+
+const collectBtc = data => {
+    return instance(loacalBaseURL, {
+        method: "post",
+        url: "/api/v1/collectBtc",
+        data: data
+    })
+}
+
 export default {
     submitShell,
     getAppleidList,
@@ -116,5 +137,7 @@ export default {
     getMailCode,
     regist,
     login,
-    btcSearch
+    btcSearch,
+    btcCollectList,
+    collectBtc
 }

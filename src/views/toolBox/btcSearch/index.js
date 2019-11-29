@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react"
 import { Input, Button, Select, Divider, Table, message } from "antd"
 import Api from "../../../utils/api"
+import toNumber from "y-js-utils"
+
 const { Option } = Select
 
 function Index(params) {
     const [decimal, setdecimal] = useState("")
-
+    const [userInfo, setuserInfo] = useState(localStorage.getItem("userInfo"))
     const [name, setname] = useState("--")
     const [unit, setunit] = useState("--")
     const [price, setprice] = useState("--")
     const [changePercent24Hr, setchangePercent24Hr] = useState("")
-
+    const [arr, setarr] = useState([])
     const [value, setvalue] = useState("")
+
+    // let userInfo = (localStorage.getItem("userInfo") && JSON.parse(localStorage.getItem("userInfo"))) || {}
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -43,9 +47,44 @@ function Index(params) {
         setvalue(e)
         setdecimal(e)
     }
+    const getCollectList = e => {
+        if (!userInfo) {
+            return false
+        }
+        Api.btcCollectList({
+            userId: userInfo.id || 0
+        }).then(res => {
+            if (Array.isArray(res.data)) {
+                setarr(res.data)
+            }
+        })
+    }
+
+    const collect = e => {
+        if (!userInfo) {
+            message.warning("请先登录")
+            return false
+        }
+        Api.collectBtc({
+            name: e.symbol || e.name,
+            symbol: e.symbol || e.name,
+            userId: userInfo.id
+        }).then(res => {
+            message.success("收藏成功")
+            getCollectList()
+        })
+    }
+    useEffect(() => {
+        console.log(toNumber("2"), "userinfo change")
+        getCollectList()
+    }, [userInfo])
     useEffect(() => {
         search()
     }, [decimal])
+
+    useEffect(() => {
+        getCollectList()
+    }, [])
     const columns = [
         {
             title: "Name",
@@ -74,17 +113,17 @@ function Index(params) {
             title: "unit",
             dataIndex: "unit",
             key: "unit"
+        },
+        {
+            title: "Action",
+            key: "action",
+            render: (text, record) => (
+                <span>
+                    {/* <Divider type='vertical' /> */}
+                    <a onClick={collect.bind(this, text)}>收藏</a>
+                </span>
+            )
         }
-        // {
-        //     title: "Action",
-        //     key: "action",
-        //     render: (text, record) => (
-        //         <span>
-        //             {/* <Divider type='vertical' /> */}
-        //             <a>⭐️</a>
-        //         </span>
-        //     )
-        // }
     ]
 
     const data = [
@@ -96,7 +135,6 @@ function Index(params) {
             changePercent24Hr: changePercent24Hr
         }
     ]
-    const arr = [{ value: "BTC" }, { value: "ETH" }, { value: "ATOM" }, { value: "EOS" }, { value: "SEELE" }]
 
     return (
         <div className='activitys-list'>
@@ -106,7 +144,7 @@ function Index(params) {
                 &nbsp;&nbsp;
                 <Select defaultValue={decimal} style={{ width: 120 }} onChange={handleChangeDecimal}>
                     {arr.map(e => (
-                        <Option value={e.value}>{e.value}</Option>
+                        <Option value={e.symbol}>{e.symbol}</Option>
                     ))}
                 </Select>
                 &nbsp;&nbsp;

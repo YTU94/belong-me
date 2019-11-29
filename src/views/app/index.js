@@ -20,7 +20,7 @@ function Home() {
     }
     const changeList = e => {
         console.log(e)
-        if (e == 0) {
+        if (e === 0) {
             initData()
         }
         Api.getOtherIdList({}).then(res => {
@@ -37,7 +37,7 @@ function Home() {
         arr.forEach(e => {
             let accountArr = e.account.split(",")
             let pwdArr = e.password.split(",")
-            if (accountArr.length == pwdArr.length) {
+            if (accountArr.length === pwdArr.length) {
                 accountArr.forEach((f, i) => {
                     a.push({
                         account: f,

@@ -31,7 +31,7 @@ export default function Index(params) {
             setisLogined(true)
             dispatch({ type: "setNickname", nickname: res.data.nickname, email: res.data.email })
             message.success("登录成功")
-            localStorage.setItem("userInfo", JSON.stringify(res))
+            localStorage.setItem("userInfo", JSON.stringify(res.data))
         })
     }
     const registSubmit = e => {
