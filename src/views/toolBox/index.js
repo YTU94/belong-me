@@ -9,19 +9,6 @@ import SubmitCommand from './submitCommand'
 import BtcSearch from './btcSearch'
 
 function Home(params) {
-    const [message, setmessage] = useState("")
-    const [email, setemail] = useState("")
-    const msgChange = e => {
-        setmessage(e.target.value)
-    }
-    const emailChange = e => {
-        setemail(e.target.value)
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault()
-    }
-    const submitMsg = e => {}
     return (
         <div>
             <br />

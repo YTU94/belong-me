@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react"
-import { Input, Button, Select, Divider, Table, message } from "antd"
+import { Input, Button, Select, Table, message } from "antd"
 import Api from "../../../utils/api"
-import toNumber from "y-js-utils"
+// import toNumber from "y-js-utils"
+import Util from "y-js-utils"
 
 const { Option } = Select
 
-function Index(params) {
+function Home(params) {
     const [decimal, setdecimal] = useState("")
-    const [userInfo, setuserInfo] = useState(localStorage.getItem("userInfo"))
+    // const [userInfo, setuserInfo] = useState(localStorage.getItem("userInfo"))
     const [name, setname] = useState("--")
     const [unit, setunit] = useState("--")
     const [price, setprice] = useState("--")
@@ -15,7 +16,7 @@ function Index(params) {
     const [arr, setarr] = useState([])
     const [value, setvalue] = useState("")
 
-    // let userInfo = (localStorage.getItem("userInfo") && JSON.parse(localStorage.getItem("userInfo"))) || {}
+    let userInfo = (localStorage.getItem("userInfo") && JSON.parse(localStorage.getItem("userInfo"))) || {}
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -75,9 +76,9 @@ function Index(params) {
         })
     }
     useEffect(() => {
-        console.log(toNumber("2"), "userinfo change")
+        console.log(Util.base.toNumber('2'), "userinfo change")
         getCollectList()
-    }, [userInfo])
+    }, [])
     useEffect(() => {
         search()
     }, [decimal])
@@ -144,7 +145,7 @@ function Index(params) {
                 &nbsp;&nbsp;
                 <Select defaultValue={decimal} style={{ width: 120 }} onChange={handleChangeDecimal}>
                     {arr.map(e => (
-                        <Option value={e.symbol}>{e.symbol}</Option>
+                        <Option key={e.symbol} value={e.symbol}>{e.symbol}</Option>
                     ))}
                 </Select>
                 &nbsp;&nbsp;
@@ -162,4 +163,4 @@ function Index(params) {
     )
 }
 
-export default Index
+export default Home

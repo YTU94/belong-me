@@ -7,10 +7,10 @@ function Index(params) {
     const [showNameForm, setshowNameForm] = useState(false)
     const [showForm, setshowForm] = useState(false)
     const [nickName, setnickName] = useState("")
-    const [message, setmessage] = useState("")
+    const [msg, setmsg] = useState("")
     const [messagelist, setmessageList] = useState(["start"])
     useEffect(() => {
-        setmessage("")
+        setmsg("")
     }, [messagelist])
 
     const nickNameChange = e => {
@@ -18,14 +18,14 @@ function Index(params) {
     }
 
     const msgChange = e => {
-        setmessage(e.target.value)
+        setmsg(e.target.value)
     }
 
     const handleSubmit = e => {
         e.preventDefault()
     }
     const submitMsg = e => {
-        setmessageList([...messagelist, message])
+        setmessageList([...messagelist, msg])
     }
 
     const save = e => {
@@ -34,7 +34,7 @@ function Index(params) {
 
     const handleOk = e => {
         if (!nickName) return message.warning("请先输入昵称")
-        Api.sendMsg({ nickName, message }).then(res => {
+        Api.sendMsg({ nickName, msg }).then(res => {
             console.log(res)
         })
     }
@@ -76,11 +76,11 @@ function Index(params) {
             {showForm ? (
                 <Form labelCol={{ span: 2 }} wrapperCol={{ span: 12 }} onSubmit={handleSubmit}>
                     <Form.Item label='message'>
-                        <Input placeholder='Please input what you want to say' onChange={msgChange} value={message} id='validating0' />
+                        <Input placeholder='Please input what you want to say' onChange={msgChange} value={msg} id='validating0' />
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ span: 12, offset: 2 }}>
-                        <Button type='primary' htmlType='submit' disabled={!message} onClick={submitMsg}>
+                        <Button type='primary' htmlType='submit' disabled={!msg} onClick={submitMsg}>
                             Submit
                         </Button>
                     </Form.Item>
