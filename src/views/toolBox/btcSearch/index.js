@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Input, Button, Select, Table, message } from "antd"
 import Api from "../../../utils/api"
-// import toNumber from "y-js-utils"
 import Util from "y-js-utils"
 
 const { Option } = Select
@@ -13,7 +12,7 @@ function Home(params) {
     const [unit, setunit] = useState("--")
     const [price, setprice] = useState("--")
     const [changePercent24Hr, setchangePercent24Hr] = useState("")
-    const [arr, setarr] = useState([])
+    const [collectList, setcollectList] = useState([])
     const [value, setvalue] = useState("")
 
     let userInfo = (localStorage.getItem("userInfo") && JSON.parse(localStorage.getItem("userInfo"))) || {}
@@ -55,8 +54,9 @@ function Home(params) {
         Api.btcCollectList({
             userId: userInfo.id || 0
         }).then(res => {
+            console.log(res.data)
             if (Array.isArray(res.data)) {
-                setarr(res.data)
+                setcollectList(res.data)
             }
         })
     }
@@ -75,8 +75,18 @@ function Home(params) {
             getCollectList()
         })
     }
+
+    const collectStatus = e => {
+        // need UserID
+        if (!userInfo) {
+            return -1
+        }
+        const tarArr = collectList.filter(e => e.id === userInfo.id)
+        return (tarArr.length && tarArr[0].collected) || -1
+    }
+
     useEffect(() => {
-        console.log(Util.base.toNumber('2'), "userinfo change")
+        console.log(Util, "userinfo change")
         getCollectList()
     }, [])
     useEffect(() => {
@@ -118,10 +128,11 @@ function Home(params) {
         {
             title: "Action",
             key: "action",
-            render: (text, record) => (
+            render: record => (
                 <span>
-                    {/* <Divider type='vertical' /> */}
-                    <a onClick={collect.bind(this, text)}>收藏</a>
+                    <Button type='primary' disabled={record.action < 0} onClick={collect.bind(this, record)}>
+                        {record.action === 0 ? "收藏" : record.action === 1 ? "已收藏" : "请先登陆"}
+                    </Button>
                 </span>
             )
         }
@@ -133,7 +144,8 @@ function Home(params) {
             name: name,
             unit: unit,
             price: price,
-            changePercent24Hr: changePercent24Hr
+            changePercent24Hr: changePercent24Hr,
+            action: collectStatus()
         }
     ]
 
@@ -144,8 +156,10 @@ function Home(params) {
                 <Input placeholder='Input Currency' value={value} onChange={onChange} style={{ width: 200 }} />
                 &nbsp;&nbsp;
                 <Select defaultValue={decimal} style={{ width: 120 }} onChange={handleChangeDecimal}>
-                    {arr.map(e => (
-                        <Option key={e.symbol} value={e.symbol}>{e.symbol}</Option>
+                    {collectList.map((e, i) => (
+                        <Option key={i} value={e.symbol}>
+                            {e.symbol}
+                        </Option>
                     ))}
                 </Select>
                 &nbsp;&nbsp;

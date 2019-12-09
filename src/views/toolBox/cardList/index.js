@@ -46,8 +46,8 @@ function Index(params) {
     return (
         <div className='card-list'>
             <Row gutter={[16, 16]}>
-                {cardList.map(e => (
-                    <Col xs={24} md={8}>
+                {cardList.map((e, i) => (
+                    <Col key={i} xs={24} md={8}>
                         <Card>
                             <Link className='list-card' to={e.path}>
                                 <Meta
