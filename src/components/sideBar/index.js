@@ -1,7 +1,7 @@
 import React, { useReducer } from "react"
 import { useSelector } from "react-redux"
 import { Avatar, Icon, Button, message } from "antd"
-import UserMsg from "../../components/userMsg"
+import UserMsg from "../userMsg"
 import "./index.less"
 
 function Index(params) {

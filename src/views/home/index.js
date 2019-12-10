@@ -6,7 +6,7 @@ import Apps from "../app"
 import story from "../story"
 import target from "../target"
 import toolBox from "../toolBox"
-import SideBar from "../sideBar"
+import SideBar from "../../components/sideBar"
 
 const breadcrumbNameMap = {
     "/apps": "app",

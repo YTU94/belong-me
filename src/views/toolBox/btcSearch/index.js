@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useSelector } from "react-redux"
 import { Input, Button, Select, Table, message } from "antd"
 import Api from "../../../utils/api"
 import Util from "y-js-utils"
@@ -6,7 +7,14 @@ import Util from "y-js-utils"
 const { Option } = Select
 
 function Home(params) {
+    const userId = useSelector(state => {
+        const userInfo = state.userInfo
+        return userInfo.id
+    })
+
     const [decimal, setdecimal] = useState("")
+    const [hasResult, sethasResult] = useState(0)
+    const [collected, setcollected] = useState(0)
     // const [userInfo, setuserInfo] = useState(localStorage.getItem("userInfo"))
     const [name, setname] = useState("--")
     const [unit, setunit] = useState("--")
@@ -15,8 +23,28 @@ function Home(params) {
     const [collectList, setcollectList] = useState([])
     const [value, setvalue] = useState("")
 
-    let userInfo = (localStorage.getItem("userInfo") && JSON.parse(localStorage.getItem("userInfo"))) || {}
-
+    useEffect(() => {
+        console.log(Util, "userinfo change")
+        getCollectList()
+    }, [userId])
+    useEffect(() => {
+        if (!userId) return
+        const tarArr = collectList.filter(e => e.userId === userId && e.name === name)
+        if (tarArr.length) {
+            setcollected(tarArr[0].collected)
+        }
+    }, [name])
+    // const updateCollected = e => {
+    //     console.log("do updateCollected")
+    //     const tarArr = collectList.filter(e => e.id === userId)
+    //     if (tarArr.length) {
+    //         setcollected(tarArr[0].collected)
+    //     }
+    //     return tarArr[0] && tarArr[0].collected || "--"
+    // }
+    /*
+     * methods
+     */
     const handleSubmit = e => {
         e.preventDefault()
         if (!value) {
@@ -24,18 +52,7 @@ function Home(params) {
             return false
         }
         setdecimal(value)
-    }
-
-    const search = e => {
-        Api.btcSearch({
-            symbol: value
-        }).then(res => {
-            let r = res.data && res.data[0]
-            setname(r.symbol)
-            setprice((+r.priceUsd).toFixed(4))
-            setunit("USD")
-            setchangePercent24Hr(Number(r.changePercent24Hr).toFixed(2))
-        })
+        search()
     }
     const onChange = e => {
         setvalue(e.target.value)
@@ -46,56 +63,58 @@ function Home(params) {
     const handleChangeDecimal = e => {
         setvalue(e)
         setdecimal(e)
+        search()
+    }
+
+    const search = e => {
+        if (!value) return
+        setcollected(0)
+        Api.btcSearch({
+            symbol: value
+        }).then(res => {
+            let r = res.data && res.data[0]
+            sethasResult(1)
+            setname(r.symbol)
+            setprice((+r.priceUsd).toFixed(4))
+            setunit("USD")
+            setchangePercent24Hr(Number(r.changePercent24Hr).toFixed(2))
+            getCollectList()
+        })
+    }
+    const collect = e => {
+        Api.collectBtc({
+            name: e.symbol || e.name,
+            symbol: e.symbol || e.name,
+            userId: userId,
+            collected: e.collected === 0 ? 1 : 0
+        }).then(res => {
+            message.success("操作成功")
+            setcollected(e.collected === 0 ? 1 : 0)
+            getCollectList()
+        })
     }
     const getCollectList = e => {
-        if (!userInfo) {
-            return false
-        }
+        if (!userId) return
+
         Api.btcCollectList({
-            userId: userInfo.id || 0
+            userId: userId
         }).then(res => {
-            console.log(res.data)
             if (Array.isArray(res.data)) {
                 setcollectList(res.data)
             }
         })
     }
 
-    const collect = e => {
-        if (!userInfo) {
-            message.warning("请先登录")
-            return false
+    const data = [
+        {
+            key: "1",
+            name: name,
+            unit: unit,
+            price: price,
+            changePercent24Hr: changePercent24Hr,
+            collected: collected
         }
-        Api.collectBtc({
-            name: e.symbol || e.name,
-            symbol: e.symbol || e.name,
-            userId: userInfo.id
-        }).then(res => {
-            message.success("收藏成功")
-            getCollectList()
-        })
-    }
-
-    const collectStatus = e => {
-        // need UserID
-        if (!userInfo) {
-            return -1
-        }
-        const tarArr = collectList.filter(e => e.id === userInfo.id)
-        return (tarArr.length && tarArr[0].collected) || -1
-    }
-
-    useEffect(() => {
-        console.log(Util, "userinfo change")
-        getCollectList()
-    }, [])
-    useEffect(() => {
-        search()
-    }, [decimal])
-
-    useEffect(() => {
-        getCollectList()
-    }, [])
+    ]
     const columns = [
         {
             title: "Name",
@@ -108,7 +127,6 @@ function Home(params) {
             dataIndex: "price",
             key: "price"
         },
-
         {
             title: "24Hr",
             dataIndex: "changePercent24Hr",
@@ -126,26 +144,15 @@ function Home(params) {
             key: "unit"
         },
         {
-            title: "Action",
-            key: "action",
+            title: "Collected",
+            key: "collected",
             render: record => (
                 <span>
-                    <Button type='primary' disabled={record.action < 0} onClick={collect.bind(this, record)}>
-                        {record.action === 0 ? "收藏" : record.action === 1 ? "已收藏" : "请先登陆"}
+                    <Button type='primary' disabled={!userId || !hasResult} onClick={collect.bind(this, record)}>
+                        {!userId ? "请先登录" : record.collected === 0 ? "收藏" : "已收藏"}
                     </Button>
                 </span>
             )
-        }
-    ]
-
-    const data = [
-        {
-            key: "1",
-            name: name,
-            unit: unit,
-            price: price,
-            changePercent24Hr: changePercent24Hr,
-            action: collectStatus()
         }
     ]
 
