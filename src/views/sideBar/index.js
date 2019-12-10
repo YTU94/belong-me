@@ -1,14 +1,14 @@
 import React, { useReducer } from "react"
 import { useSelector } from "react-redux"
-import "./index.less"
 import { Avatar, Icon, Button, message } from "antd"
 import UserMsg from "../../components/userMsg"
-import { reducer, myContext } from "../../reducer"
+import "./index.less"
+
 function Index(params) {
     const checkIn = e => {
         message.success("签到成功")
     }
-    const [state, dispatch] = useReducer(reducer, { nickname: "", email: "" })
+
     const userInfo = useSelector(state => state.userInfo)
 
     return (
@@ -43,9 +43,7 @@ function Index(params) {
                         签到
                     </Button>
                 </section>
-                <myContext.Provider value={{ state, dispatch }}>
-                    <UserMsg></UserMsg>
-                </myContext.Provider>
+                <UserMsg></UserMsg>
             </div>
         </div>
     )

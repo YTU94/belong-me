@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux"
 
 import "./index.less"
 import Api from "../../utils/api"
-import { myContext } from "../../reducer"
 import { addUserInfo } from "src/redux/actions"
 
 export default function Index(params) {

@@ -12,10 +12,7 @@ export const addTodo = content => ({
 
 export const setFilter = filter => ({ type: SET_FILTER, payload: { filter } })
 
-export const addUserInfo = e => {
-    console.log("0", e)
-    return {
-        type: "ADD_USERINFO",
-        payload: e
-    }
-}
+export const addUserInfo = e => ({
+    type: "ADD_USERINFO",
+    payload: e
+})
