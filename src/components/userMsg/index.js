@@ -1,16 +1,20 @@
 import React, { useState, useContext } from "react"
 import { Button, Modal, Input, Form, Icon, message } from "antd"
+import { useDispatch } from "react-redux"
+
 import "./index.less"
 import Api from "../../utils/api"
 import { myContext } from "../../reducer"
+import { addUserInfo } from "src/redux/actions"
 
 export default function Index(params) {
-    const { state, dispatch } = useContext(myContext)
+    const dispatch = useDispatch()
+    // const { state, dispatch } = useContext(myContext)
     const [timeMsg, settimeMsg] = useState("获取验证码")
     const [isLogined, setisLogined] = useState(false)
     // login
-    const [account, setaccount] = useState("")
-    const [pass, setpass] = useState("")
+    const [account, setaccount] = useState("453980450@qq.com")
+    const [pass, setpass] = useState("261011")
     // regist
     const [nickName, setnickName] = useState("")
     const [email, setemail] = useState("")
@@ -29,9 +33,8 @@ export default function Index(params) {
         }).then(res => {
             setshowLoginForm(false)
             setisLogined(true)
-            dispatch({ type: "setNickname", nickname: res.data.nickname, email: res.data.email })
+            dispatch(addUserInfo(res.data))
             message.success("登录成功")
-            localStorage.setItem("userInfo", JSON.stringify(res.data))
         })
     }
     const registSubmit = e => {
@@ -88,7 +91,7 @@ export default function Index(params) {
             {!isLogined ? (
                 <div className='login-before'>
                     <Button className='auto-btn' type='primary' onClick={() => setshowLoginForm(true)}>
-                        登录{state.count}
+                        登录
                     </Button>
                     <Button className='auto-btn' type='' onClick={() => setshowRegistForm(true)}>
                         注册

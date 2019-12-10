@@ -1,9 +1,11 @@
-export default function(state = {}, action) {
+const initialState = {}
+
+export default function(state = initialState, action) {
+    console.log('1', action);
     switch (action.type) {
         case "ADD_USERINFO":
-            return action.e
-
+            return action.payload
         default:
-            return false
+            return state
     }
 }

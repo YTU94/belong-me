@@ -1,17 +1,12 @@
 import React from "react"
 import "./index.less"
 import { Button } from "antd"
-import { useSelector } from "react-redux"
 
 export default function Index(params) {
-    const counter = useSelector(state => {
-        console.log("---", state)
-        return state.visibilityFilter
-    })
 
     return (
         <footer className='footer'>
-            <h3>{counter} The story has not yet begun</h3>
+            <h3>The story has not yet begun</h3>
             <div className='content'>
                 <h4>
                     Blog:
