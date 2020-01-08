@@ -1,12 +1,12 @@
-import React, { useReducer } from "react"
-import { useSelector } from "react-redux"
-import { Avatar, Icon, Button, message } from "antd"
-import UserMsg from "../userMsg"
-import "./index.less"
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { Avatar, Icon, Button, message } from 'antd'
+import UserMsg from '../userMsg'
+import './index.less'
 
 function Index(params) {
     const checkIn = e => {
-        message.success("签到成功")
+        message.success('签到成功')
     }
 
     const userInfo = useSelector(state => state.userInfo)
@@ -15,7 +15,7 @@ function Index(params) {
         <div className='side-bar'>
             <div className='top-card'>
                 <h2 className='text-align-center'>
-                    {userInfo.nickname || "user"} —— <Avatar style={{ backgroundColor: "#87d068" }}>YTU</Avatar>
+                    {userInfo.nickname || 'user'} —— <Avatar style={{ backgroundColor: '#87d068' }}>YTU</Avatar>
                 </h2>
                 <br />
                 <div className='text-introduction'>
@@ -31,7 +31,7 @@ function Index(params) {
                 <div className='text-introduction'>
                     <Icon type='mail' />
                     &nbsp;&nbsp;
-                    <a href=''>{userInfo.email || "- -"}</a>
+                    <a href=''>{userInfo.email || '- -'}</a>
                 </div>
                 <div className='text-introduction'>LIVE：且随疾风前行</div>
             </div>
