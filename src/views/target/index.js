@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from 'antd'
 
-export default function(params) {
+export default function (params) {
     const [show, setshow] = useState(false)
     const [data, setdata] = useState({
         x: 'asdasdas',
@@ -9,7 +9,7 @@ export default function(params) {
         transDemandNo: 1
     })
 
-    const submit = e => {
+    const submit = (e) => {
         // TODO: 判断
         console.log('----->', e)
         if (e) {
@@ -19,31 +19,8 @@ export default function(params) {
             }, 1000)
         }
     }
-    const hideModal = e => {
+    const hideModal = (e) => {
         setshow(false)
     }
-    return (
-        <div className='target'>
-            目标 docker
-            <h3>开一个羽毛球场馆</h3>
-            理由
-            <p className=''>谁还没有一个爱好吗</p>
-            <Button
-                onClick={() => {
-                    setshow(true)
-                }}
-            >
-                {' '}
-                发起过去开标{' '}
-            </Button>
-            <Button
-                onClick={() => {
-                    setshow(true)
-                }}
-            >
-                {' '}
-                变更{' '}
-            </Button>
-        </div>
-    )
+    return <div className='target'></div>
 }
