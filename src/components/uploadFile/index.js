@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Icon, Upload, message, Button, Input, Steps } from "antd"
+import { Image, Icon, Upload, message, Button, Input, Steps } from "antd"
 import "./app.less"
 import Api from "../../utils/api"
 const { Step } = Steps
@@ -82,6 +82,11 @@ function UploadFile() {
                     </Button>
                 </Upload>
                 <div>{curUrl}</div>
+                {curUrl ? <Image
+                    width={200}
+                    src={curUrl}
+                /> : null}
+
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import UploadFile from '../../../components/uploadFile'
 import Api from '../../../utils/api'
-import { Icon } from 'antd'
+import { Icon, Button } from 'antd'
 import './index.less'
 
 function Index(params) {
@@ -13,7 +13,7 @@ function Index(params) {
         Api.getFilePath({}).then(res => {
             setcurPathList(res.data)
         })
-        return () => {}
+        return () => { }
     }, [])
 
     const openFile = (e, jump = false) => {
@@ -71,7 +71,7 @@ function Index(params) {
             <UploadFile></UploadFile>
             <div className=''>
                 {curImgPath && <img src={curImgPath} alt='image.png' className='ant-item-image' />}
-                <h1>preview </h1>
+                <h1>预览 </h1>
                 <div className='path-route'>
                     <a onClick={openFile.bind(this, 'root', true)}>Root </a>
                     {curRoute.map((e, i) => {
@@ -91,6 +91,11 @@ function Index(params) {
                         </div>
                     )
                 })}
+            </div>
+            <div className="">
+                <Button type='primary'>好用</Button>
+                &nbsp;&nbsp;
+                <Button type='normal'>男用</Button>
             </div>
         </div>
     )
